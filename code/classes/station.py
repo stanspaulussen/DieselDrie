@@ -6,8 +6,11 @@ class Station():
         self.y_coord = y_coord
         self.connections = {}
 
-    def add_connection(self, station):
-        pass
+    def add_connection(self, station, length):
+        self.connections[station.station_id] = [station, length]
 
     def get_connections(self):
         pass
+
+    def __repr__(self):
+        return f"{self.name}: {self.connections.keys()}"
