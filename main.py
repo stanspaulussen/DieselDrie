@@ -13,6 +13,6 @@ if __name__ == "__main__":
 
     print("test")
     print(test_track)
-    test_track.add_station("Alkmaar")
+    test_track.add_station('Alkmaar')
     print(test_track)
 
