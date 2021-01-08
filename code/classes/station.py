@@ -9,8 +9,8 @@ class Station():
     def add_connection(self, station, length):
         self.connections[station.station_id] = [station, length]
 
-    def get_connections(self, station):
-        pass
+    def get_connections(self):
+        return list(self.connections.values())
 
     def __repr__(self):
         return f"{self.name}: {self.connections.keys()}"
