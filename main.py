@@ -9,15 +9,23 @@ if __name__ == "__main__":
     # print(test_grid)
     # print(test_grid.stations)
 
-    # Creating a track 
-    test_track = track.Track('train_1', test_grid)
+    # Creating track 1
+    track_1 = track.Track('train_1', test_grid)
 
+    track_1.add_station(test_grid, 'Hoorn')
+    track_1.add_station(test_grid, 'Alkmaar')
+    track_1.add_station(test_grid, 'Zaandam')
+    track_1.add_station(test_grid, 'Castricum')
 
-    test_track.add_station(test_grid, 'Hoorn')
-    test_track.add_station(test_grid, 'Alkmaar')
-    test_track.add_station(test_grid, 'Zaandam')
-    test_track.add_station(test_grid, 'Den Helder')
+    # creating track 2
+    track_2 = track.Track('train_2', test_grid)
 
+    track_2.add_station(test_grid, 'Amsterdam Centraal')
+    track_2.add_station(test_grid, 'Amsterdam Sloterdijk')
+    track_2.add_station(test_grid, 'Amsterdam Zuid')
+    track_2.add_station(test_grid, 'Schiphol Airport')
+    track_2.add_station(test_grid, 'Leiden Centraal')
+    
 
     # goal function
     print(test_grid.get_quality())
