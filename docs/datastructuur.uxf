@@ -15,7 +15,7 @@ connections: {Station.id: [Station, Length]}
 add_connection(self, Station): None
 get_connections(self): [Station.id]</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>670</x><y>183</y><w>220</w><h>260</h></coordinates><panel_attributes>Track
 --
-id: Int
+name: string
 stations: {int: Station}
 length: int
 --

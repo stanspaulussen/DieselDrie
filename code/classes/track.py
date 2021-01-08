@@ -1,19 +1,19 @@
 from .grid import Grid 
 
 class Track():
-    def __init__(self, track_id):
-        self.track_id = track_id
+    def __init__(self, track_name):
+        self.track_name = track_name
         self.stations = {}
         self.length = None
 
-    def add_station(self, station_name):
-        grid = Grid("data/StationsHolland.csv", "data/ConnectiesHolland.csv")
+    def add_station(self, grid, station_name):
+       
         station = grid.get_station(station_name) 
         
         self.stations[station.station_id] = station
  
     def get_stations(self):
-        pass
+        return self.stations.values()
     
     def __repr__(self):
         return f"{self.stations}"

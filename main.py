@@ -13,12 +13,12 @@ if __name__ == "__main__":
     test_track = track.Track('train_1')
 
     print(test_track)
-    test_track.add_station('Hoorn')
-    test_track.add_station('Alkmaar')
+    test_track.add_station(test_grid, 'Hoorn')
+    test_track.add_station(test_grid, 'Alkmaar')
 
     print(test_track)
 
     # goal function
-    print(algorithm.goal_function(test_track))
+    print(algorithm.get_quality(test_track))
 
 

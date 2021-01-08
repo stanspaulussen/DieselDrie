@@ -1,4 +1,5 @@
 from .station import Station
+from .track import Track
 import csv
 
 class Grid():
@@ -36,3 +37,7 @@ class Grid():
 
                 station_a.add_connection(station_b, length)
                 station_b.add_connection(station_a, length)
+    
+    
+    def get_quality(self, track):
+        print(track)
