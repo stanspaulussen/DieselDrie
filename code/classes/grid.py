@@ -1,5 +1,4 @@
 from .station import Station
-from .track import Track
 import csv
 
 class Grid():
@@ -40,4 +39,6 @@ class Grid():
     
     
     def get_quality(self, track):
-        print(track)
+        return "test"
+    
+    

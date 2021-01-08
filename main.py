@@ -19,6 +19,6 @@ if __name__ == "__main__":
     print(test_track)
 
     # goal function
-    print(algorithm.get_quality(test_track))
+    print(test_grid.get_quality(test_track))
 
 
