@@ -1,4 +1,4 @@
-from code.classes import grid, station, track
+from code.classes import grid, station, track, testgraph
 from code.algorithms import algorithm
 
 if __name__ == "__main__":
@@ -21,5 +21,9 @@ if __name__ == "__main__":
 
     # goal function
     print(test_grid.get_quality())
+
+    # graph
+    
+    graph(test_grid)
 
 
