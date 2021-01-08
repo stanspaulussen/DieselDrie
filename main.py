@@ -24,6 +24,6 @@ if __name__ == "__main__":
 
     # graph
     
-    graph(test_grid)
+    testgraph.graph(test_grid)
 
 
