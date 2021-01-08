@@ -8,7 +8,6 @@ class Grid():
         self.tracks = {}
 
     def load_stations(self, sourcefile):
-        #comment
         stations = {}
         with open(sourcefile, 'r') as in_file:
             reader = csv.DictReader(in_file)

@@ -1,4 +1,5 @@
 from code.classes import grid, station, track
+from code.algorithms import algorithm
 
 if __name__ == "__main__":
 
@@ -11,8 +12,13 @@ if __name__ == "__main__":
     # Creating a track 
     test_track = track.Track('train_1')
 
-    print("test")
     print(test_track)
+    test_track.add_station('Hoorn')
     test_track.add_station('Alkmaar')
+
     print(test_track)
+
+    # goal function
+    print(algorithm.goal_function(test_track))
+
 
