@@ -9,7 +9,7 @@ class Station():
     def add_connection(self, station, length):
         self.connections[station.station_id] = [station, length]
 
-    def get_connections(self):
+    def get_connections(self, station):
         pass
 
     def __repr__(self):

@@ -5,7 +5,7 @@ class Track():
         self.length = None
 
     def add_station(self, station):
-        pass
+        self.stations[station.station_id] = station
 
     def get_stations(self):
         pass
