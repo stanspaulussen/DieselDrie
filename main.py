@@ -1,4 +1,5 @@
-from code.classes import grid, station, track, testgraph
+from code.classes import grid, station, track
+from code.visualisation import visualise
 from code.algorithms import algorithm
 
 if __name__ == "__main__":
@@ -32,6 +33,6 @@ if __name__ == "__main__":
 
     # graph
     
-    testgraph.graph(test_grid)
+    visualise.graph(test_grid)
 
 
