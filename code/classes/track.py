@@ -26,7 +26,10 @@ class Track():
             # pak connections van last station
             connections = last_station.get_connections()
             # check of huidig station daarbij zit
+            print("hier komen de connecties van de last station")
             for connection in connections:
+                
+                print(connection[0])
                 if station == connection[0]:
                     self.stations[station.station_id] = station
                     print(self.stations)
