@@ -18,18 +18,19 @@ if __name__ == "__main__":
     track_1.add_station(test_grid, 'Alkmaar')
     track_1.add_station(test_grid, 'Hoorn')
     track_1.add_station(test_grid, 'Alkmaar')
-    # track_1.add_station(test_grid, 'Zaandam')
-    # track_1.add_station(test_grid, 'Castricum')
+    track_1.add_station(test_grid, 'Zaandam')
+    track_1.add_station(test_grid, 'Castricum')
     print(track_1)
 
-    # # creating track 2
-    # track_2 = track.Track('train_2', test_grid)
+    # creating track 2
+    track_2 = track.Track('train_2', test_grid)
 
-    # track_2.add_station(test_grid, 'Amsterdam Centraal')
-    # track_2.add_station(test_grid, 'Amsterdam Sloterdijk')
-    # track_2.add_station(test_grid, 'Amsterdam Zuid')
-    # track_2.add_station(test_grid, 'Schiphol Airport')
-    # track_2.add_station(test_grid, 'Leiden Centraal')
+    track_2.add_station(test_grid, 'Amsterdam Centraal')
+    track_2.add_station(test_grid, 'Amsterdam Sloterdijk')
+    track_2.add_station(test_grid, 'Amsterdam Zuid')
+    track_2.add_station(test_grid, 'Schiphol Airport')
+    track_2.add_station(test_grid, 'Leiden Centraal')
+    print(track_2)
     
 
     # goal function

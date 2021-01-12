@@ -17,7 +17,7 @@ class Track():
         # check of er al stations zijn toegevoegd aan de track
         
         if self.stations == {}:
-            self.stations[station.station_id] = station
+            self.stations[0] = station
             return True
         else:
             # pak last station object
@@ -26,21 +26,23 @@ class Track():
             # pak connections van last station
             connections = last_station.get_connections()
             # check of huidig station daarbij zit
-            print("hier komen de connecties van de last station")
+            # print("hier komen de connecties van de last station")
             for connection in connections:
                 
-                print(connection[0])
+                # print(connection[0])
                 if station == connection[0]:
-                    self.stations[station.station_id] = station
-                    print(self.stations)
+                    self.stations[len(self.stations)] = station
+                    # print(self.stations)
+                    # print("size:")
+                    # print(len(self.stations))
                     self.length = self.length + int(connection[1])
                     return True
             
-            print("geen connectie")
+            # print("geen connectie")
             return False
  
     def get_stations(self):
         return self.stations.values()
     
     def __repr__(self):
-        return f"{self.stations}"
+        return f"{self.track_name}: {self.stations}"

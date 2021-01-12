@@ -24,13 +24,12 @@ class Grid():
                 return station
 
     def load_connections(self, sourcefile):
-        connections = 0
+        connections = {}
         with open(sourcefile) as in_file:
             reader = csv.DictReader(in_file)
+            i = 0
 
             for row in reader:
-                # print(row)
-                # row = row.split(',')
                 station_a = self.get_station(row['station1'])
                 station_b = self.get_station(row['station2'])
                 length = int(row['distance'])
@@ -38,23 +37,28 @@ class Grid():
                 station_a.add_connection(station_b, length)
                 station_b.add_connection(station_a, length)
 
-                connections += 1
+                connections[i] = [station_a, station_b]
+                i += 1
         
+        print("connections:")
+        print(connections)
         return connections
     
     def add_track(self, track):
         self.tracks[track.track_name] = track
     
     def get_quality(self):
+        print("quality")
+        
         # aantal trajecten t
         t = len(self.tracks)
-        print(t)
+        print(f"t: {t}")
 
         # aantal minuten min
         time = 0
         for track in list(self.tracks.values()):
             time += track.length
-            print(time)
+        print(f"time: {time}")
 
         # fractie bereden verbindingen p
         station_tracker = []
@@ -63,11 +67,11 @@ class Grid():
                 if station not in station_tracker:
                     station_tracker.append(station)
         
-        p = (len(station_tracker)-1)/self.connections
-        print(p)
+        p = (len(station_tracker)-1)/len(self.connections)
+        print(f"p: {p}")
 
         k = p*10000 - (t*100 + time)
-        print(k)
+        print(f"k: {k}")
 
     def __repr__(self):
         return f"{self.stations.values()}:: {self.tracks.values()}"
