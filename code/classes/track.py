@@ -1,4 +1,7 @@
-from .grid import Grid 
+from .grid import Grid
+from .station import Station
+
+MAX_LENGTH = 121
 
 class Track():
     def __init__(self, track_name, grid):
@@ -10,7 +13,7 @@ class Track():
         grid.add_track(self)
 
     def add_station(self, grid, station_name):
-        station = grid.get_station(station_name) 
+        station = grid.get_station(station_name)
         # check of er al stations zijn toegevoegd aan de track
         if self.stations == {}:
             self.stations[0] = station
@@ -23,8 +26,8 @@ class Track():
             connections = last_station.get_connections()
             # check of huidig station daarbij zit
             for connection in connections:
-                # station heeft connectie met vorige station
-                if station == connection[0]:
+                # station heeft connectie met vorige station en lengte niet te hoog
+                if station == connection[0] and self.length + int(connection[1]) < MAX_LENGTH:
                     # voeg station toe aan track
                     self.stations[len(self.stations)] = station
                     # voeg lengte verbinding toe aan totale lengte track
@@ -46,6 +49,17 @@ class Track():
         elif [connection[1], connection[0]] in self.connections.values():
             return True
         return False
+    
+    def remove_last_station(self):
+        # remove station
+        removed_station = self.stations.popitem()
+
+        # remove length
+        l = removed_station[1].connections[list(self.stations.values())[-1].station_id]
+        self.length -= l[1]
+
+        # remove connection
+        self.connections.popitem
     
     def __repr__(self):
         return f"{self.track_name}: {self.stations}"

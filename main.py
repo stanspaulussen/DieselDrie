@@ -21,6 +21,7 @@ if __name__ == "__main__":
     track_1.add_station(test_grid, 'Zaandam')
     track_1.add_station(test_grid, 'Castricum')
     print(track_1)
+    track_1.remove_last_station()
 
     # creating track 2
     track_2 = track.Track('train_2', test_grid)
