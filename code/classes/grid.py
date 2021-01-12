@@ -40,8 +40,6 @@ class Grid():
                 connections[i] = [station_a, station_b]
                 i += 1
         
-        print("connections:")
-        print(connections)
         return connections
     
     def add_track(self, track):
@@ -61,13 +59,17 @@ class Grid():
         print(f"time: {time}")
 
         # fractie bereden verbindingen p
-        station_tracker = []
-        for track in list(self.tracks.values()):
-            for station in list(track.stations.values()):
-                if station not in station_tracker:
-                    station_tracker.append(station)
+        connection_list = list(self.connections.values())
+        connected = 0
+        allready_visited = []
         
-        p = (len(station_tracker)-1)/len(self.connections)
+        for track in self.tracks.values():
+            for connection in connection_list:
+                if track.get_connection(connection) and connection not in allready_visited:
+                    connected += 1
+                    allready_visited.append(connection)
+        
+        p = connected/len(self.connections)
         print(f"p: {p}")
 
         k = p*10000 - (t*100 + time)
