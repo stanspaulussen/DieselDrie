@@ -9,33 +9,33 @@ def random_track(grid):
     Chooses random starting point and following stations of a track. 
     """
 
-    # choose random first station
-    first_station = grid.stations[random.choice(list(grid.stations))]
-    first_station_name = first_station.name
+    number_of_tracks = 6
 
-    # adds track
-    track = Track("track_0", grid)
-    track.add_station(grid, first_station_name)
+    for i in range(number_of_tracks):
+        # choose random first station
+        first_station = grid.stations[random.choice(list(grid.stations))]
+        first_station_name = first_station.name
 
-    # adds following stations depending on connections 
-    for i in range(8):
-        print("GO")
-        # check if it is the first station you add to the existing track, otherwise grab last station
-        if len(track.stations) == 1:
-            station_connections = first_station.get_connections()
-        else:
-            station_connections = grid.stations[list(track.stations.keys())[-1]].get_connections()
+        # adds track
+        track = Track(f"track_{str(i)}", grid)
+        track.add_station(grid, first_station_name)
 
-        # chooses random connection to add to the track
-        next_station_object = random.choice(station_connections)
-        next_station = next_station_object[0].name
-        print("volgende station")
-        print(next_station)
-        track.add_station(grid, next_station)
+        # adds following stations depending on connections 
+        for i in range(8):
+            # check if it is the first station you add to the existing track, otherwise grab last station
+            if len(track.stations) == 1:
+                station_connections = first_station.get_connections()
+            else:
+                station_connections = list(track.stations.values())[-1].get_connections()
 
-    grid.add_track(track)
+            # chooses random connection to add to the track
+            next_station_object = random.choice(station_connections)
+            next_station = next_station_object[0].name
+            track.add_station(grid, next_station)
 
-    print(grid.get_quality())
+        grid.add_track(track)
+
+
 
 
 

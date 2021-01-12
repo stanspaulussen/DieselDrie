@@ -6,7 +6,7 @@ def graph(grid):
     
     stations = grid.stations.values()
     tracks = grid.tracks.values()
-    colors = ['.-r', '.-g', '.-b', '.-p', '.-y', '.-m', '.-c']
+    colors = ['.-r', '.-g', '.-b', '.-y', '.-m', '.-c','.--k']
     cursor = 0
 
     # get coordinates 
@@ -35,6 +35,8 @@ def graph(grid):
             plt.text(x_B, y_B, destination.name)
 
     for track in tracks:
+        print("Hier komt de track")
+        print(track)
         color = colors[cursor]
         cursor += 1
 
