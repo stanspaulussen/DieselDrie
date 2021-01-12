@@ -34,8 +34,7 @@ def random_track(grid):
             track.add_station(grid, next_station)
 
         grid.add_track(track)
-        print("Hier komt een track")
-        print(track.stations)
+
     
 
 

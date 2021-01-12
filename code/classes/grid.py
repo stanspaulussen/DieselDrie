@@ -116,5 +116,7 @@ class Grid():
         k = p*10000 - (t*100 + time)
         print(f"k: {k}")
 
+        return k
+
     def __repr__(self):
         return f"{self.stations.values()}:: {self.tracks.values()}"
