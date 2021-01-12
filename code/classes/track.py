@@ -4,53 +4,79 @@ from .station import Station
 MAX_LENGTH = 121
 
 class Track():
+    """
+    defines a track containing stations and conections and a total length
+    """
     def __init__(self, track_name, grid):
         self.track_name = track_name
         self.stations = {}
         self.connections = {}
         self.length = 0
 
+        # adds itself to the grid
         grid.add_track(self)
 
     def add_station(self, grid, station_name):
+        """
+        add a new station to the track
+        it must be connected to the previous stations
+        """
+        # get the station object
         station = grid.get_station(station_name)
-        # check of er al stations zijn toegevoegd aan de track
+
+        # check if the stations dictionary is empty
         if self.stations == {}:
             self.stations[0] = station
+            
             return True
         else:
-            # pak last station object
+            # get last station object
             station_list = list(self.stations.values())
             last_station = station_list[-1]
-            # pak connections van last station
+
+            # get connections of last station
             connections = last_station.get_connections()
-            # check of huidig station daarbij zit
+
+            # check if connections contains the station to add
             for connection in connections:
-                # station heeft connectie met vorige station en lengte niet te hoog
+                # make sure total length does not exceed max
                 if station == connection[0] and self.length + int(connection[1]) < MAX_LENGTH:
-                    # voeg station toe aan track
+                    # add station to track
                     self.stations[len(self.stations)] = station
-                    # voeg lengte verbinding toe aan totale lengte track
+
+                    # add connection length to total length
                     self.length = self.length + int(connection[1])
-                    # voeg connectie toe aan connections
+
+                    # add connection to connections
                     self.connections[len(self.stations) - 2] = [last_station, station]
 
                     return True
             
-            # geen connectie gevonden
+            # no connection found
             return False
  
     def get_stations(self):
+        """
+        return all stations of this track
+        """
         return self.stations.values()
 
     def get_connection(self, connection):
+        """
+        check if this track contains a certain connection
+        """
+        # check for one way
         if connection in self.connections.values():
             return True
+        # check for the other way around
         elif [connection[1], connection[0]] in self.connections.values():
             return True
         return False
     
     def remove_last_station(self):
+        """
+        remove the last station that was added to this track
+        """
         # remove station
         removed_station = self.stations.popitem()
 
