@@ -39,7 +39,8 @@ if __name__ == "__main__":
 
 
     # # RANDOMISE FUNCTION AANROEPEN
-    # randomise.random_track(test_grid)
+    randomise.random_track(test_grid)
+    
 
     # graph
     

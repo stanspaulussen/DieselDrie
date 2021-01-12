@@ -9,7 +9,7 @@ def random_track(grid):
     Chooses random starting point and following stations of a track. 
     """
 
-    number_of_tracks = 6
+    number_of_tracks = 7
 
     for i in range(number_of_tracks):
         # choose random first station
@@ -21,7 +21,7 @@ def random_track(grid):
         track.add_station(grid, first_station_name)
 
         # adds following stations depending on connections 
-        for i in range(8):
+        for i in range(24):
             # check if it is the first station you add to the existing track, otherwise grab last station
             if len(track.stations) == 1:
                 station_connections = first_station.get_connections()
@@ -34,6 +34,11 @@ def random_track(grid):
             track.add_station(grid, next_station)
 
         grid.add_track(track)
+        print("Hier komt een track")
+        print(track.stations)
+    
+
+
 
 
 
