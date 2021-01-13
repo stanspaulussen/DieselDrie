@@ -81,17 +81,17 @@ class Grid():
         """
         calculate the quality of the current grid
         """
-        print("quality:")
+        # print("quality:")
         
         # amount of tracks
         t = len(self.tracks)
-        print(f"t: {t}")
+        # print(f"t: {t}")
 
         # total time
         time = 0
         for track in list(self.tracks.values()):
             time += track.length
-        print(f"time: {time}")
+        # print(f"time: {time}")
 
         # fraction used connections
         connection_list = list(self.connections.values())
@@ -110,11 +110,11 @@ class Grid():
         
         # calculate fraction
         p = connected/len(self.connections)
-        print(f"p: {p}")
+        # print(f"p: {p}")
 
         # calculate quality
         k = p*10000 - (t*100 + time)
-        print(f"k: {k}")
+        # print(f"k: {k}")
 
         return k
 

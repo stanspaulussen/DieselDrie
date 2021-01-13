@@ -7,7 +7,7 @@ import csv
 if __name__ == "__main__":
 
     # Create a grid from our data
-    test_grid = grid.Grid("data/StationsHolland.csv", "data/ConnectiesHolland.csv")
+    # test_grid = grid.Grid("data/StationsHolland.csv", "data/ConnectiesHolland.csv")
 
     # print(test_grid)
     # print(test_grid.stations)
@@ -37,11 +37,11 @@ if __name__ == "__main__":
 
     
     # # RANDOMISE FUNCTION AANROEPEN
-    randomise.random_track(test_grid)
+    # randomise.random_track(test_grid)
 
-    # goal function
-    print(test_grid.get_quality())
-    quality = test_grid.get_quality()
+    # # goal function
+    # print(test_grid.get_quality())
+    # quality = test_grid.get_quality()
     
     # # append quality score to csv file 
     # with open ('output.csv', 'a') as f: 
@@ -52,16 +52,28 @@ if __name__ == "__main__":
     #     f.write("\n")
     #     f.write("\n")
 
-    with open ('output_1line.csv', 'a') as f:
-        f.write("\n")
-        f.write(f"{str(quality)}, {str(test_grid.tracks)}")
+    
+    # with open ('output_1line.csv', 'a') as f:
+    #     f.write("\n")
+    #     f.write(f"{str(quality)}, {str(test_grid.tracks)}")
+
+    while True:
+        test_grid = grid.Grid("data/StationsHolland.csv", "data/ConnectiesHolland.csv")
+
+        randomise.random_track(test_grid)
+
+        quality = test_grid.get_quality()
+
+        with open ('output_1line.csv', 'a') as f:
+            f.write("\n")
+            f.write(f"{str(quality)}, {str(test_grid.tracks)}")
 
 
     
 
     # graph
     
-    visualise.graph(test_grid)
+    # visualise.graph(test_grid)
 
 
 
