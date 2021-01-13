@@ -43,14 +43,17 @@ if __name__ == "__main__":
     print(test_grid.get_quality())
     quality = test_grid.get_quality()
     
-    # append quality score to csv file 
-    with open ('output.csv', 'a') as f: 
-        for track in test_grid.tracks:
-            f.write(f" {str(track)} : {test_grid.tracks[track]}")
-            f.write("\n")
-        f.write(str(quality))
-        f.write("\n")
-        f.write("\n")
+    # # append quality score to csv file 
+    # with open ('output.csv', 'a') as f: 
+    #     for track in test_grid.tracks:
+    #         f.write(f" {str(track)} : {test_grid.tracks[track]}")
+    #         f.write("\n")
+    #     f.write(str(quality))
+    #     f.write("\n")
+    #     f.write("\n")
+
+    with open ('output_1line.csv', 'a') as f:
+        f.write(f"Quality: {quality} Tracks: {str(test_grid.tracks)}")
 
 
     
