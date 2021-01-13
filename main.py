@@ -4,7 +4,7 @@ from code.algorithms import algorithm
 from code.algorithms import randomise
 import csv
 
-if _name_ == "_main_":
+if __name__ == "__main__":
 
     # Create a grid from our data
     test_grid = grid.Grid("data/StationsHolland.csv", "data/ConnectiesHolland.csv")
