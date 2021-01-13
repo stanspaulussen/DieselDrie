@@ -1,21 +1,21 @@
 # DieselDrie
-test
+
 ## Classes
 
 * Grid
-  * alle stations
+* All stations
 * Station
-  * links met andere stations
-* Traject/Trein
-  * Stations van de route
+* Links to other stations
+* Tracks/Trains
+* Stations of a track
 
-## Functies
+## Functions
 
-* input file naar classes
-* trajecten aanmaken
-* score berekenen
-* output file genereren
+* Input file to classes
+* Making tracks
+* Calculating score
+* Generating output file
 
-## visualtie
+## Visualisation
 
-* ???
+* Visualising stations, connections between stations and tracks in a graph based on station coordinates.
