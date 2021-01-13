@@ -3,11 +3,11 @@
 ## Classes
 
 * Grid
-* All stations
+  * All stations
 * Station
-* Links to other stations
+  * Links to other stations
 * Tracks/Trains
-* Stations of a track
+  * Stations of a track
 
 ## Functions
 
