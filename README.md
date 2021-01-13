@@ -18,4 +18,5 @@
 
 ## Visualisation
 
-* Visualising stations, connections between stations and tracks in a graph based on station coordinates.
+* Visualising stations, connections between stations and tracks.
+* Visualised in a graph based on station coordinates.
