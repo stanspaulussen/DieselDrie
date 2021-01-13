@@ -53,7 +53,8 @@ if __name__ == "__main__":
     #     f.write("\n")
 
     with open ('output_1line.csv', 'a') as f:
-        f.write(f"Quality: {quality} Tracks: {str(test_grid.tracks)}")
+        f.write("\n")
+        f.write(f"{str(quality)}, {str(test_grid.tracks)}")
 
 
     
