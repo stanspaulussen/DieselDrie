@@ -45,7 +45,11 @@ if __name__ == "__main__":
     
     # append quality score to csv file 
     with open ('output.csv', 'a') as f: 
+        for track in test_grid.tracks:
+            f.write(f" {str(track)} : {test_grid.tracks[track]}")
+            f.write("\n")
         f.write(str(quality))
+        f.write("\n")
         f.write("\n")
 
 
