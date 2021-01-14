@@ -6,7 +6,8 @@ def graph(grid):
     
     stations = grid.stations.values()
     tracks = grid.tracks.values()
-    colors = ['.-r', '.-g', '.-b', '.-y', '.-m', '.-c','.--k']
+    colors = ['.:k', '.-r', '.:g', '.-b', '.:y', '.-m', '.:c']
+    line_widths = [8, 7, 6, 5, 4, 3, 2]
     cursor = 0
 
     # get coordinates 
@@ -38,6 +39,7 @@ def graph(grid):
         print("Hier komt de track")
         print(track)
         color = colors[cursor]
+        line_width = line_widths[cursor]
         cursor += 1
 
         track_list = list(track.stations.values())
@@ -51,7 +53,7 @@ def graph(grid):
                 y_B = float(track_list[i + 1].x_coord)
                 x_B = float(track_list[i + 1].y_coord)
  
-                plt.plot([x_A, x_B], [y_A, y_B], color)
+                plt.plot([x_A, x_B], [y_A, y_B], color, alpha=0.7, linewidth=line_width)
 
             
         
