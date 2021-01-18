@@ -5,63 +5,86 @@ from code.classes.track import Track
 class Greedy():
 
     def __init__(self, grid):
-        self.grid = copy.deepcopy(grid) # deze deepcopy moet uiteindelijk wel gereturnt worden denk ik
+        self.grid = copy.deepcopy(grid) 
         self.best_score = 0
         self.best_connection = []
-        
+        self.track = Track(f"greedy_track_0", self.grid)
+        self.count = 0 
     
-    def run(self):
+    def check_best_score(self, track, station, next_station):
+        """
+        Checks if connection generates new best quality score 
+        """
+        
+        # calculate quality of grid with this connection 
+        quality = self.grid.get_quality()
+        track.remove_last_station()
 
-        count = 0
+        # if quality improves, add station to the track
+        if quality > self.best_score:
+            self.best_score = quality 
+            self.best_connection = [station , next_station]
+    
+    def pick_first_connection(self):
+        """
+        Chooses first conenction of track with greatest quality 
+        """
+
+        stations = list(self.grid.stations.values())
+
+        # add a first station to the track  
+        for station in stations:
+
+            self.track = Track(f"greedy_track_{self.count}", self.grid)
+            self.track.add_station(self.grid, station.name)
+
+            connections = station.connections
+
+            # calculate quality of all connections and save the best connection
+            for connection in connections: 
+
+                next_station = stations[int(connection)].name
+                self.track.add_station(self.grid, next_station)
+
+                self.check_best_score(self.track, station, next_station)
+
+        # add best connection to the track
+        self.track = Track(f"greedy_track_{self.count}", self.grid)
+        self.track.add_station(self.grid, self.best_connection[0].name)
+
+        self.count += 1
+
+        return station 
+
+
+    def run(self):
+        """
+        Generates a grid with a maximum of seven tracks composed of the most profitable connections
+        """
+
         for i in range(7):
 
-            stations = list(self.grid.stations.values())
-            # add a first station to the track  
-            for station in stations:
-                
-                connections = station.connections
+            # choose first connection 
+            station = self.pick_first_connection()
 
-                track = Track(f"greedy_track_{count}", self.grid)
-                track.add_station(self.grid, station.name)
+            # make sure a track doesn't exceed its max length
+            while self.track.add_station(self.grid, self.best_connection[1]):
 
-                # calculate quality of all connections and save the best connection
-                for connection in connections: # dit kan allemaal in een functie zodat ik makkelijk RandGreedy kan maken
-                    next_station = stations[int(connection)].name
-                    track.add_station(self.grid, next_station)
-
-                    quality = self.grid.get_quality()
-                    track.remove_last_station()
-
-                    if quality > self.best_score:
-                        self.best_score = quality 
-                        self.best_connection = [station , next_station] # ga je nu alleen maar 1 kant op die connectie checken?
-
-            track = Track(f"greedy_track_{count}", self.grid)
-            track.add_station(self.grid, self.best_connection[0].name)
-
-            while track.add_station(self.grid, self.best_connection[1]):
+                # all connections of the last added added station 
                 connections = self.grid.get_station(self.best_connection[1]).connections
 
-                # calculate quality of all connections
                 for connection in connections.values():
+
                     next_station = connection[0].name
                     
-                    # dit checkt of de max lengte niet overschreden wordt right?
-                    if track.add_station(self.grid, next_station) is False:
+                    # if adding the connection exceeds the track's max time length 
+                    if self.track.add_station(self.grid, next_station) is False:
                         break
-                    quality = self.grid.get_quality()
-                    track.remove_last_station()
 
-                    if quality > self.best_score:
-                        self.best_score = quality 
-                        self.best_connection = [station , next_station]
-                
-                print(f"beste score: {self.best_score}")
-                print(f"beste connectie: {self.best_connection}")
-                
-            count += 1
-
-        print(" EINDE")
+                    # calculate quality of connection 
+                    self.check_best_score(self.track, station, next_station)
         
         print(f"final_track: {self.grid.tracks}")
         print(f"quality van de tracks = {self.grid.get_quality()}") # ik heb dit nu in main dus kan weg denk ik
+
+        return self.grid 
