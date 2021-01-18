@@ -24,9 +24,9 @@ class Greedy():
                 track = Track(f"greedy_track_{count}", self.grid)
                 track.add_station(self.grid, station.name)
 
-                # calculate quality of all connections and save the best connection 
+                # calculate quality of all connections and save the best connection
                 for connection in connections: # dit kan allemaal in een functie zodat ik makkelijk RandGreedy kan maken
-                    next_station = stations[int(connection)].name # hoezo int(connection)
+                    next_station = stations[int(connection)].name
                     track.add_station(self.grid, next_station)
 
                     quality = self.grid.get_quality()
@@ -61,20 +61,7 @@ class Greedy():
                 
             count += 1
 
-        print(" EINDE") # hij checkt nu nog niet of eerder dan de max lengte van een track stoppen beter is of wel?
+        print(" EINDE")
         
         print(f"final_track: {self.grid.tracks}")
         print(f"quality van de tracks = {self.grid.get_quality()}") # ik heb dit nu in main dus kan weg denk ik
-                
-
-
-
-
-       
-            
-
-    
-
-
-
-
