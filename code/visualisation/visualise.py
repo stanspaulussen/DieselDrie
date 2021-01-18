@@ -19,16 +19,12 @@ def graph(grid):
         x_A = float(station.y_coord)
 
         for connection in connections:
-
             
             destination = grid.stations.get(connection)
-
 
             y_B = float(destination.x_coord)
             x_B = float(destination.y_coord)
 
-
-            
             plt.scatter([x_A, x_B], [y_A, y_B])
             
             plt.plot([x_A, x_B], [y_A, y_B], '.-k')
@@ -48,15 +44,11 @@ def graph(grid):
             if (i + 1) in range(len(track_list)):
                 y_A = float(track_list[i].x_coord)
                 x_A = float(track_list[i].y_coord)
-
                 
                 y_B = float(track_list[i + 1].x_coord)
                 x_B = float(track_list[i + 1].y_coord)
  
                 plt.plot([x_A, x_B], [y_A, y_B], color, alpha=0.7, linewidth=line_width)
-
-            
-        
             
     plt.show()
 

@@ -8,6 +8,33 @@ if __name__ == "__main__":
     # Create a grid from our data
     test_grid = grid.Grid("data/StationsHolland.csv", "data/ConnectiesHolland.csv")
 
+    print("Choose your algorithm:")
+    print("1: Random")
+    print("2: Greedy")
+    print("3: Random Greedy")
+
+    choice = False
+
+    while choice == False:
+        num = int(input("number of chosen algorithm: "))
+
+        if num == 1:
+            choice = True
+            randomise.random_track(test_grid)
+        elif num == 2:
+            choice = True
+            greedy = greedy.Greedy(test_grid)
+            greedy.run()
+        elif num == 3:
+            print("That algorithm is still under construction, please choose another one")
+        else:
+            print("That input is incorrect, please try again")
+
+    print("The algorithm has finished, this is your score:")
+    print(test_grid.get_quality())
+    print("This is what the solution looks like:")
+    visualise.graph(test_grid)
+
     # print(test_grid)
     # print(test_grid.stations)
 
@@ -147,5 +174,5 @@ if __name__ == "__main__":
     # visualise.graph(test_grid)
 
     # greedy 
-    greedy = greedy.Greedy(test_grid)
-    greedy.run()
+    # greedy = greedy.Greedy(test_grid)
+    # greedy.run()

@@ -5,7 +5,7 @@ from code.classes.track import Track
 class Greedy():
 
     def __init__(self, grid):
-        self.grid = copy.deepcopy(grid)
+        self.grid = copy.deepcopy(grid) # deze deepcopy moet uiteindelijk wel gereturnt worden denk ik
         self.best_score = 0
         self.best_connection = []
         
@@ -64,7 +64,7 @@ class Greedy():
         print(" EINDE") # hij checkt nu nog niet of eerder dan de max lengte van een track stoppen beter is of wel?
         
         print(f"final_track: {self.grid.tracks}")
-        print(f"quality van de tracks = {self.grid.get_quality()}")
+        print(f"quality van de tracks = {self.grid.get_quality()}") # ik heb dit nu in main dus kan weg denk ik
                 
 
 
