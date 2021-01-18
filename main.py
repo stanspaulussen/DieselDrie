@@ -16,7 +16,7 @@ if __name__ == "__main__":
     choice = False
 
     while choice == False:
-        num = input("number of chosen algorithm: ")
+        num = int(input("number of chosen algorithm: "))
 
         # TODO: check if string or int
 
