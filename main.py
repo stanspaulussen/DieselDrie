@@ -59,6 +59,7 @@ if __name__ == "__main__":
             choice = True
             greedy_lookahead = greedy_lookahead.Greedy_Lookahead(test_grid)
             greedy_lookahead.run()
+            test_grid = greedy_lookahead.grid
         else:
             print("That input is incorrect, please try again")
 
