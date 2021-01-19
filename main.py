@@ -16,9 +16,15 @@ if __name__ == "__main__":
     choice = False
 
     while choice == False:
-        num = int(input("number of chosen algorithm: "))
 
-        # TODO: check if string or int
+        while True:
+            try: 
+                num = int(input("number of chosen algorithm: "))
+            except ValueError:
+                print("That input is incorrect, please try again and type an integer")
+                continue 
+            else:
+                break 
 
         if num == 1:
             choice = True
