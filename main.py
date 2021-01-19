@@ -1,6 +1,6 @@
 from code.classes import grid, station, track
 from code.visualisation import visualise
-from code.algorithms import randomise, greedy
+from code.algorithms import randomise, greedy, greedy_lookahead
 import csv
 
 if __name__ == "__main__":
@@ -29,7 +29,25 @@ if __name__ == "__main__":
 
         if num == 1:
             choice = True
-            randomise.random_track(test_grid)
+            while True:
+                try:
+                    loop_amount = int(input("How many loops should the algorithm do?\n"))
+                except ValueError:
+                    print("That input is incorrect, please try again and type an integer")
+                    continue
+                else:
+                    break
+            while True:
+                try:
+                    track_amount = int(input("How many tracks should the algorithm make?\n"))
+                except ValueError:
+                    print("That input is incorrect, please try again and type an integer")
+                    continue
+                else:
+                    break
+            random = randomise.Random(test_grid, loop_amount, track_amount)
+            random.run()
+            test_grid = random.best_grid
         elif num == 2:
             choice = True
             greedy = greedy.Greedy(test_grid)
