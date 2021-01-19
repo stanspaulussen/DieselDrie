@@ -1,6 +1,6 @@
 from code.classes import grid, station, track
 from code.visualisation import visualise
-from code.algorithms import randomise, greedy, greedy_lookahead
+from code.algorithms import randomise, greedy, greedy_lookahead, random_greedy
 import csv
 
 if __name__ == "__main__":
@@ -54,7 +54,10 @@ if __name__ == "__main__":
             greedy.run()
             test_grid = greedy.grid
         elif num == 3:
-            print("That algorithm is still under construction, please choose another one")
+            choice = True
+            r_greedy = random_greedy.Random_greedy(test_grid)
+            r_greedy.run()
+            test_grid = r_greedy.grid
         elif num == 4:
             choice = True
             greedy_lookahead = greedy_lookahead.Greedy_Lookahead(test_grid)

@@ -54,7 +54,7 @@ class Greedy():
 
         self.count += 1
 
-        return station 
+        return station
     
     def pick_next_station(self, station):
         """
