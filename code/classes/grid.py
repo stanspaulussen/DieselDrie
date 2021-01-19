@@ -5,10 +5,23 @@ class Grid():
     """
     contains all stations, connections and tracks
     """
-    def __init__(self, sourcefile_stations, sourcefile_connections):
-        self.stations = self.load_stations(sourcefile_stations)
-        self.connections = self.load_connections(sourcefile_connections)
+    def __init__(self, sourcefile_stations, sourcefile_connections, load=True):
+        if load == True:
+            self.stations = self.load_stations(sourcefile_stations)
+            self.connections = self.load_connections(sourcefile_connections)
+        else:
+            self.stations = None
+            self.connections = None
+        
         self.tracks = {}
+
+    def copy(self):
+        new = Grid(None, None, load=False)
+
+        new.stations = self.stations
+        new.connections = self.connections
+
+        return new
 
     def load_stations(self, sourcefile):
         """

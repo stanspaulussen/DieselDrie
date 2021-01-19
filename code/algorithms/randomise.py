@@ -3,6 +3,9 @@ from code.classes.grid import Grid
 from code.classes.track import Track
 from code.classes.station import Station
 
+class Random():
+    pass
+
 
 def random_track(grid): 
     """
@@ -34,19 +37,3 @@ def random_track(grid):
             track.add_station(grid, next_station)
 
         grid.add_track(track)
-
-    
-
-
-
-
-
-
-
-    
-    
-
-
-
-
-
