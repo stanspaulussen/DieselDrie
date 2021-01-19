@@ -12,6 +12,7 @@ if __name__ == "__main__":
     print("1: Random")
     print("2: Greedy")
     print("3: Random Greedy")
+    print("4: Greedy with Lookahead")
 
     choice = False
 
@@ -36,6 +37,10 @@ if __name__ == "__main__":
             test_grid = greedy.grid
         elif num == 3:
             print("That algorithm is still under construction, please choose another one")
+        elif num == 4:
+            choice = True
+            greedy_lookahead = greedy_lookahead.Greedy_Lookahead(test_grid)
+            greedy_lookahead.run()
         else:
             print("That input is incorrect, please try again")
 
