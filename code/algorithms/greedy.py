@@ -55,6 +55,27 @@ class Greedy():
         self.count += 1
 
         return station 
+    
+    def pick_next_station(self, station):
+        """
+        Chooses next station in track based on highest quality 
+        """
+
+        # all connections of the last added added station 
+        connections = self.grid.get_station(self.best_connection[1]).connections
+
+        for connection in connections.values():
+
+            next_station = connection[0].name
+            
+            # if adding the connection exceeds the track's max time length 
+            if self.track.add_station(self.grid, next_station) is False:
+                break
+
+            # calculate quality of connection 
+            self.check_best_score(self.track, station, next_station)
+
+
 
 
     def run(self):
@@ -69,21 +90,10 @@ class Greedy():
 
             # make sure a track doesn't exceed its max length
             while self.track.add_station(self.grid, self.best_connection[1]):
+                
+                # add connection to the track with greatest quality 
+                self.pick_next_station(station)
 
-                # all connections of the last added added station 
-                connections = self.grid.get_station(self.best_connection[1]).connections
-
-                for connection in connections.values():
-
-                    next_station = connection[0].name
-                    
-                    # if adding the connection exceeds the track's max time length 
-                    if self.track.add_station(self.grid, next_station) is False:
-                        break
-
-                    # calculate quality of connection 
-                    self.check_best_score(self.track, station, next_station)
-        
         print(f"final_track: {self.grid.tracks}")
         print(f"quality van de tracks = {self.grid.get_quality()}") # ik heb dit nu in main dus kan weg denk ik
 
