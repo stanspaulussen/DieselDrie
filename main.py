@@ -27,6 +27,7 @@ if __name__ == "__main__":
             choice = True
             greedy = greedy.Greedy(test_grid)
             greedy.run()
+            test_grid = greedy.grid
         elif num == 3:
             print("That algorithm is still under construction, please choose another one")
         else:

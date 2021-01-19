@@ -75,9 +75,6 @@ class Greedy():
             # calculate quality of connection 
             self.check_best_score(self.track, station, next_station)
 
-
-
-
     def run(self):
         """
         Generates a grid with a maximum of seven tracks composed of the most profitable connections
@@ -95,6 +92,5 @@ class Greedy():
                 self.pick_next_station(station)
 
         print(f"final_track: {self.grid.tracks}")
-        print(f"quality van de tracks = {self.grid.get_quality()}") # ik heb dit nu in main dus kan weg denk ik
 
         return self.grid 
