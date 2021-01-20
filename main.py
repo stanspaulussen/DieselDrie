@@ -47,7 +47,7 @@ if __name__ == "__main__":
 
             while True: 
                 try: 
-                    data = int(input("Which map would you like to use?\n"))
+                    data = int(input("Which map would you like to use? Choose '1' for Holland or '2' for the Netherlands.\n"))
                 except ValueError:
                     print("That input is incorrect, please try again and type an integer")
                     continue
@@ -56,6 +56,7 @@ if __name__ == "__main__":
             
             # create a grid from our data
             test_grid = grid.Grid(data)
+
             random = randomise.Random(test_grid, loop_amount, track_amount, data)
             random.run()
             test_grid = random.best_grid
@@ -82,7 +83,7 @@ if __name__ == "__main__":
 
             while True: 
                 try: 
-                    data = int(input("Which map would you like to use?\n"))
+                    data = int(input("Which map would you like to use? Choose '1' for Holland or '2' for the Netherlands.\n"))
                 except ValueError:
                     print("That input is incorrect, please try again and type an integer")
                     continue
@@ -99,7 +100,7 @@ if __name__ == "__main__":
 
             while True: 
                 try: 
-                    data = int(input("Which map would you like to use?\n"))
+                    data = int(input("Which map would you like to use? Choose '1' for Holland or '2' for the Netherlands.\n"))
                 except ValueError:
                     print("That input is incorrect, please try again and type an integer")
                     continue
