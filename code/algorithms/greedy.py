@@ -4,8 +4,9 @@ from code.classes.track import Track
 
 class Greedy():
 
-    def __init__(self, grid):
-        self.grid = copy.deepcopy(grid) 
+    def __init__(self, grid, data):
+        self.grid = copy.deepcopy(grid)
+        self.data = data
         self.best_score = 0
         self.best_connection = []
         self.track = Track(f"greedy_track_0", self.grid)

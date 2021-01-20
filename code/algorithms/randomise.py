@@ -7,10 +7,11 @@ from code.classes.station import Station
 MAX_TRACK_LENGTH = 24
 
 class Random():
-    def __init__(self, grid, loop_amount, track_amount):
+    def __init__(self, grid, loop_amount, track_amount, data):
         self.base_grid = grid
         self.loop_amount = loop_amount
         self.track_amount = track_amount
+        self.data = data
         self.best_score = 0
         self.best_grid = None
 

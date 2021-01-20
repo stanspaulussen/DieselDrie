@@ -22,9 +22,13 @@ class Greedy_Lookahead(Greedy):
                 next_station = stations[int(la1)].name
                 self.track.add_station(self.grid, next_station)
                 lookahead_2 = stations[int(la1)].get_connections()
+                
                 for la2 in lookahead_2:
-                    self.track.add_station(self.grid, la2[0].name)
-
+                    
+                    # if adding the connection exceeds the track's max time length 
+                    if self.track.add_station(self.grid, la2[0].name) is False:
+                        break
+                    
                 #self.check_best_score(self.track, station, next_station)
                     quality = self.grid.get_quality()
                     self.track.remove_last_station()

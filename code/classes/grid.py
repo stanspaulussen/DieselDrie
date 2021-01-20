@@ -5,8 +5,18 @@ class Grid():
     """
     contains all stations, connections and tracks
     """
-    def __init__(self, sourcefile_stations, sourcefile_connections, load=True):
+    def __init__(self, data, load=True):
+
+        self.data = data
+
         if load == True:
+            if self.data == 1: 
+                sourcefile_stations = "data/StationsHolland.csv"
+                sourcefile_connections = "data/ConnectiesHolland.csv"
+            else: 
+                sourcefile_stations = "data/StationsNationaal.csv"
+                sourcefile_connections = "data/ConnectiesNationaal.csv"
+
             self.stations = self.load_stations(sourcefile_stations)
             self.connections = self.load_connections(sourcefile_connections)
         else:
