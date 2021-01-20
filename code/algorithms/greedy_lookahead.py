@@ -6,6 +6,7 @@ from code.algorithms.greedy import Greedy
 class Greedy_Lookahead(Greedy):
 
     def pick_first_connection(self):
+        self.best_connection = []
         stations = list(self.grid.stations.values())
 
         # add a first station to the track  
@@ -37,14 +38,19 @@ class Greedy_Lookahead(Greedy):
                         self.best_score = quality 
                         self.best_connection = [station.name, stations[int(la1)].name, la2[0].name]
                 self.track.remove_last_station()
+        
+        try:
+            # add best connection to the track
+            self.track = Track(f"greedy_track_{self.count}", self.grid)
+            self.track.add_station(self.grid, self.best_connection[0])
 
-        # add best connection to the track
-        self.track = Track(f"greedy_track_{self.count}", self.grid)
-        self.track.add_station(self.grid, self.best_connection[0])
+            self.count += 1
 
-        self.count += 1
+            return station 
 
-        return station 
+        except IndexError:
+            return False
+
 
     def pick_next_station(self, station):
 
@@ -65,7 +71,8 @@ class Greedy_Lookahead(Greedy):
 
             for la2 in lookahead_2:
                 la2 = stations.get(la2)
-                self.track.add_station(self.grid, la2.name)
+                if self.track.add_station(self.grid, la2.name) is False:
+                    break
                 
                 quality = self.grid.get_quality()
                 
