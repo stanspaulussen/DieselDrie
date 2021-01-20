@@ -1,8 +1,6 @@
 from .grid import Grid
 from .station import Station
 
-MAX_LENGTH = 121
-
 class Track():
     """
     defines a track containing stations and conections and a total length
@@ -15,6 +13,11 @@ class Track():
 
         # adds itself to the grid
         grid.add_track(self)
+
+        if grid.data == 1:
+            self.max_length = 121
+        else:
+            self.max_length = 181
 
     def add_station(self, grid, station_name):
         """
@@ -40,7 +43,7 @@ class Track():
             # check if connections contains the station to add
             for connection in connections:
                 # make sure total length does not exceed max
-                if station == connection[0] and self.length + int(connection[1]) < MAX_LENGTH:
+                if station == connection[0] and self.length + int(connection[1]) < self.max_length:
                     # add station to track
                     self.stations[len(self.stations)] = station
 

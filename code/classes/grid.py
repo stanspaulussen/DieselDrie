@@ -26,7 +26,7 @@ class Grid():
         self.tracks = {}
 
     def copy(self):
-        new = Grid(None, None, load=False)
+        new = Grid(None, load=False)
 
         new.stations = self.stations
         new.connections = self.connections
