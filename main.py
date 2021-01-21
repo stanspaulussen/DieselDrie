@@ -70,10 +70,18 @@ if __name__ == "__main__":
             test_grid = greedy.grid
         elif num == 3:
             choice = True
+            while True:
+                try:
+                    loop_amount = int(input("How many loops should the algorithm do?\n"))
+                except ValueError:
+                    print("That input is incorrect, please try again and type an integer")
+                    continue
+                else:
+                    break
 
-            r_greedy = random_greedy.Random_greedy(test_grid, data, track_amount)
+            r_greedy = random_greedy.Random_greedy(test_grid, data, track_amount, loop_amount)
             r_greedy.run()
-            test_grid = r_greedy.grid
+            test_grid = r_greedy.best_grid
         elif num == 4:
 
             choice = True

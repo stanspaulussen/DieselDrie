@@ -11,7 +11,7 @@ class Greedy():
         self.best_score = 0
         self.best_connection = []
         self.track = Track(f"greedy_track_0", self.grid)
-        self.count = 0 
+        self.count = 0
     
     def check_best_score(self, track, station, next_station):
         """
@@ -63,6 +63,7 @@ class Greedy():
             return self.best_connection[0].name
 
         except IndexError:
+            
             return False
 
 
