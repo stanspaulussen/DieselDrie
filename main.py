@@ -1,6 +1,6 @@
 from code.classes import grid, station, track
 from code.visualisation import visualise
-from code.algorithms import randomise, greedy, greedy_lookahead, random_greedy
+from code.algorithms import randomise, greedy, greedy_lookahead, random_greedy, depth_first
 import csv
 
 if __name__ == "__main__":
