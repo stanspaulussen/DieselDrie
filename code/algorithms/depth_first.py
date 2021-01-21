@@ -13,9 +13,7 @@ class Depth_first:
         self.track = Track(f"depthfirst_0", self.grid )
         self.tracks = []
 
-        self.new_grid = copy.deepcopy(self.grid)
     
-
     def run(self):
 
         stations_list = list(self.stations)
@@ -33,7 +31,8 @@ class Depth_first:
 
             # add first station to track
             track = copy.deepcopy(self.track)
-            track.add_station(self.new_grid, first_station.name)
+            new_grid = copy.deepcopy(self.grid)
+            track.add_station(new_grid, first_station.name)
 
 
             # visit all possibilities 
@@ -50,13 +49,15 @@ class Depth_first:
 
                 # add station to track
                 new_track = copy.deepcopy(track)
-                new_track.add_station(self.new_grid, self.stations[connection].name)
+                while new_track.add_station(copy.deepcopy(self.grid), self.stations[connection].name):
+                
+                    print(new_track)
+                    print("\n")
 
-                self.tracks.append(new_track)
-                print(self.tracks)
-                print("\n")
+                    self.tracks.append(new_track)
+            
 
-                self.visit_all_possibilities(self.visited, stations, self.stations[connection], new_track)
+                    self.visit_all_possibilities(self.visited, stations, self.stations[connection], new_track)
 
 
 
