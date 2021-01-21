@@ -11,6 +11,7 @@ class Depth_first:
         self.data = data 
         self.stations = self.grid.stations
         self.track = Track(f"depthfirst_0", self.grid )
+        self.tracks = []
 
         self.new_grid = copy.deepcopy(self.grid)
     
@@ -50,17 +51,16 @@ class Depth_first:
                 # add station to track
                 new_track = copy.deepcopy(track)
                 new_track.add_station(self.new_grid, self.stations[connection].name)
-                print(f"dit is de nieuwe track: {new_track}")
 
-
-                # for new_connection in self.stations[connection].connections:
-                #     if self.stations[new_connection] not in self.visited:
-                #         self.visited.add(self.stations[new_connection])
-
-                #          # add station to track
-                #         track.add_station(self.new_grid, self.stations[new_connection].name)
+                self.tracks.append(new_track)
+                print(self.tracks)
+                print("\n")
 
                 self.visit_all_possibilities(self.visited, stations, self.stations[connection], new_track)
+
+
+
+                
             
 
             

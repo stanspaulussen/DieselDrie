@@ -43,8 +43,7 @@ class Track():
             # check if connections contains the station to add
             for connection in connections:
                 # make sure total length does not exceed max
-                if station == connection[0] and self.length + int(connection[1]) < self.max_length:
-                    print("hij komt in de loop")
+                if str(station) == str(connection[0]) and self.length + int(connection[1]) < self.max_length:
                     # add station to track
                     self.stations[len(self.stations)] = station
 
@@ -56,12 +55,6 @@ class Track():
 
                     return True
 
-                print(f"station: {station}")
-                print(f"connection: {connection[0]}")
-                print(self.length + int(connection[1]))
-                print(self.max_length)
-
-            
             # no connection found
             return False
  
