@@ -90,7 +90,7 @@ if __name__ == "__main__":
             test_grid = greedy_lookahead.grid
         elif num == 5:
             choice = True
-            depth_first = depth_first.Depth_first(test_grid, data)
+            depth_first = depth_first.Depth_first(test_grid, data, track_amount)
             depth_first.run()
             test_grid = depth_first.grid
         else:

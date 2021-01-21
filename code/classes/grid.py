@@ -142,4 +142,4 @@ class Grid():
         return k
 
     def __repr__(self):
-        return f"{self.stations.values()}:: {self.tracks.values()}"
+        return f"{self.tracks.values()}"
