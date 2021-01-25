@@ -7,16 +7,10 @@ class Depth_first:
 
     def __init__(self, grid, data, track_amount):
         self.grid = copy.deepcopy(grid)
-        self.visited = set()
         self.data = data 
         self.stations = self.grid.stations
-        self.track = Track(f"depthfirst_0", self.grid)
-        self.tracks = []
         self.track_amount = track_amount
         self.best_score = 0
-
-        # self.new_grid = copy.deepcopy(self.grid)
-    
 
     def run(self):
         station_dict = {}
