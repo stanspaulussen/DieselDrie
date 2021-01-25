@@ -16,7 +16,8 @@ class Depth_first_2(Depth_first):
                 if grid.get_quality() > self.best_score:
                     self.best_score = grid.get_quality()
                     self.grid = copy.deepcopy(grid)
-                    print(f"new best score: {self.best_score}:\n{self.grid}\n\n")
+                    #print(f"new best score: {self.best_score}:\n{self.grid}\n\n")
+                    
 
                 # print(self.tracks)
                 # print("\n")

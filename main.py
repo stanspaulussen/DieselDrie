@@ -1,6 +1,6 @@
 from code.classes import grid, station, track
 from code.visualisation import visualise
-from code.algorithms import randomise, greedy, greedy_lookahead, random_greedy, depth_first, depth_first_2
+from code.algorithms import randomise, greedy, greedy_lookahead, random_greedy, depth_first, depth_first_2, depth_first_3
 import csv
 import time
 
@@ -35,6 +35,7 @@ if __name__ == "__main__":
     print("4: Greedy with Lookahead")
     print("5: Depth First")
     print("6: Depth First 2.0")
+    print("7: Depth First 3.0")
 
     choice = False
 
@@ -117,6 +118,14 @@ if __name__ == "__main__":
 
             depth_first_2.run()
             test_grid = depth_first_2.grid
+        elif num == 7:
+            choice = True
+            depth_first_3 = depth_first_3.Depth_first_3(test_grid, data, track_amount)
+
+            start = time.time()
+
+            depth_first_3.run()
+            test_grid = depth_first_3.grid
         else:
             print("That input is incorrect, please try again")
 

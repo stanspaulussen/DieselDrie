@@ -11,8 +11,10 @@ class Depth_first:
         self.stations = self.grid.stations
         self.track_amount = track_amount
         self.best_score = 0
+        self.station_dict = self.make_station_dict()
 
     def run(self):
+
         station_list = self.create_station_list()
 
         # run as long as there are stations in the stack
@@ -26,6 +28,9 @@ class Depth_first:
 
             # visit all possibilities 
             self.visit_all_possibilities(self.first_station, track, new_grid)
+
+            
+
         
     def create_new_track(self, station_list, i, new_grid):
         self.first_station = self.stations[station_list.pop(0)]
@@ -34,14 +39,20 @@ class Depth_first:
 
         return track
     
-    def create_station_list(self):
-        station_dict = {}
+    def make_station_dict(self):
+
+        self. station_dict = {}
 
         for station in self.stations:
             length = len(self.stations[station].connections)
-            station_dict[station] = length
+            self.station_dict[station] = length
+        
+        return self.station_dict
+                
+    
+    def create_station_list(self):
 
-        sorted_station_list = sorted(station_dict, key=station_dict.get)
+        sorted_station_list = sorted(self.station_dict, key=self.station_dict.get)
 
         return sorted_station_list
 
@@ -57,12 +68,13 @@ class Depth_first:
                 if new_grid.get_quality() > self.best_score:
                     self.best_score = new_grid.get_quality()
                     self.grid = copy.deepcopy(new_grid)
-                    print(f"new best score: {self.best_score}:\n{self.grid}\n\n")
+                    #print(f"new best score: {self.best_score}:\n{self.grid}\n\n")
 
                 # print(self.tracks)
                 # print("\n")
 
                 self.visit_all_possibilities(self.stations[connection], new_track, new_grid)
+        
 
 
 
