@@ -88,7 +88,7 @@ class Track():
         self.length -= l[1]
 
         # remove connection
-        self.connections.popitem
+        self.connections.popitem()
     
     def __repr__(self):
         return f"{self.track_name}: {self.stations}"

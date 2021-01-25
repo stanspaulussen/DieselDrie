@@ -1,7 +1,8 @@
 from code.classes import grid, station, track
 from code.visualisation import visualise
-from code.algorithms import randomise, greedy, greedy_lookahead, random_greedy, depth_first
+from code.algorithms import randomise, greedy, greedy_lookahead, random_greedy, depth_first, depth_first_2
 import csv
+import time
 
 if __name__ == "__main__":
 
@@ -33,7 +34,7 @@ if __name__ == "__main__":
     print("3: Random Greedy")
     print("4: Greedy with Lookahead")
     print("5: Depth First")
-
+    print("6: Depth First 2.0")
 
     choice = False
 
@@ -60,12 +61,18 @@ if __name__ == "__main__":
                     break
 
             random = randomise.Random(test_grid, loop_amount, track_amount, data)
+
+            start = time.time()
+
             random.run()
             test_grid = random.best_grid
         elif num == 2:
             choice = True
             
             greedy = greedy.Greedy(test_grid, data, track_amount)
+
+            start = time.time()
+
             greedy.run()
             test_grid = greedy.grid
         elif num == 3:
@@ -80,25 +87,46 @@ if __name__ == "__main__":
                     break
 
             r_greedy = random_greedy.Random_greedy(test_grid, data, track_amount, loop_amount)
+
+            start = time.time()
+
             r_greedy.run()
             test_grid = r_greedy.best_grid
         elif num == 4:
 
             choice = True
             greedy_lookahead = greedy_lookahead.Greedy_Lookahead(test_grid, data, track_amount)
+
+            start = time.time()
+            
             greedy_lookahead.run()
             test_grid = greedy_lookahead.grid
         elif num == 5:
             choice = True
             depth_first = depth_first.Depth_first(test_grid, data, track_amount)
+
+            start = time.time()
+
             depth_first.run()
             test_grid = depth_first.grid
+        elif num == 6:
+            choice = True
+            depth_first_2 = depth_first_2.Depth_first_2(test_grid, data, track_amount)
+
+            start = time.time()
+
+            depth_first_2.run()
+            test_grid = depth_first_2.grid
         else:
             print("That input is incorrect, please try again")
 
-    print("The algorithm has finished, this is your score:")
+    end = time.time()
+    duration = end - start
+    
+    print(f"The algorithm has finished in {duration} seconds, this is your score:")
     print(test_grid.get_quality())
     print("This is what the solution looks like:")
+    print(test_grid)
     visualise.graph(test_grid)
 
     # TODO: create output file

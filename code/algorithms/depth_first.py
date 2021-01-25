@@ -19,9 +19,6 @@ class Depth_first:
     
 
     def run(self):
-
-        stations_list = list(self.stations)
-        
         station_dict = {}
         for station in self.stations:
             length = len(self.stations[station].connections)

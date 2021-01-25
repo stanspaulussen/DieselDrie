@@ -63,7 +63,6 @@ class Greedy():
             return self.best_connection[0].name
 
         except IndexError:
-            
             return False
 
 

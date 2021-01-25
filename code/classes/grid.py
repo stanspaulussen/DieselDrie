@@ -128,6 +128,7 @@ class Grid():
                 # check if connection is used in track
                 if track.get_connection(connection) and connection not in allready_visited:
                     connected += 1
+                    # print(f"connection: {connection}")
                     # add track to allready_visited to not check again
                     allready_visited.append(connection)
         
