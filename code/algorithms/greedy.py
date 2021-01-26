@@ -105,8 +105,6 @@ class Greedy():
         """
 
         for i in range(self.track_amount):
-
-            print(self.grid.get_quality())
             
             # choose first connection 
             station = self.pick_first_connection()

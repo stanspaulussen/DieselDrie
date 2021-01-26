@@ -1,3 +1,11 @@
+"""
+track.py
+Minor Programming: Programming Theory
+By: Pauline van Lieshout, Jari Hoffman and Stans Paulussen
+
+This file contains the database of each formed track. 
+"""
+
 from .grid import Grid
 from .station import Station
 

@@ -1,3 +1,11 @@
+"""
+station.py
+Minor Programming: Programming Theory
+By: Pauline van Lieshout, Jari Hoffman and Stans Paulussen
+
+This file contains the database of each station. 
+"""
+
 class Station():
     """
     contains a station with coordinates and connections

@@ -1,3 +1,11 @@
+"""
+grid.py
+Minor Programming: Programming Theory
+By: Pauline van Lieshout, Jari Hoffman and Stans Paulussen
+
+This file contains the database for the combined tracks that form a train system.
+"""
+
 from .station import Station
 import csv
 
@@ -9,6 +17,7 @@ class Grid():
 
         self.data = data
 
+        # loads different data depending on which map is chosen
         if load == True:
             if self.data == 1: 
                 sourcefile_stations = "data/StationsHolland.csv"
@@ -26,6 +35,11 @@ class Grid():
         self.tracks = {}
 
     def copy(self):
+        ## TODO
+        """
+        Dit moet Jari doen
+        """
+
         new = Grid(None, load=False)
 
         new.stations = self.stations
@@ -104,17 +118,14 @@ class Grid():
         """
         calculate the quality of the current grid
         """
-        # print("quality:")
         
         # amount of tracks
         t = len(self.tracks)
-        # print(f"t: {t}")
 
         # total time
         time = 0
         for track in list(self.tracks.values()):
             time += track.length
-        # print(f"time: {time}")
 
         # fraction used connections
         connection_list = list(self.connections.values())
@@ -128,17 +139,15 @@ class Grid():
                 # check if connection is used in track
                 if track.get_connection(connection) and connection not in allready_visited:
                     connected += 1
-                    # print(f"connection: {connection}")
+
                     # add track to allready_visited to not check again
                     allready_visited.append(connection)
         
         # calculate fraction
         p = connected/len(self.connections)
-        # print(f"p: {p}")
 
         # calculate quality
-        k = p*10000 - (t*100 + time)
-        # print(f"k: {k}")
+        k = p * 10000 - (t * 100 + time)
 
         return k
 
