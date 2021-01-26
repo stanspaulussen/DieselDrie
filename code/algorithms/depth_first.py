@@ -61,19 +61,22 @@ class Depth_first:
         for connection in first_station.connections:
             # add station to track
 
-            new_grid = copy.deepcopy(grid)
-            new_track = new_grid.tracks[track.track_name]
-            while new_track.add_station(new_grid, self.stations[connection].name):
+            # new_grid = copy.deepcopy(grid)
+            # new_track = new_grid.tracks[track.track_name]
+            if track.add_station(grid, self.stations[connection].name):
 
-                if new_grid.get_quality() > self.best_score:
-                    self.best_score = new_grid.get_quality()
-                    self.grid = copy.deepcopy(new_grid)
-                    #print(f"new best score: {self.best_score}:\n{self.grid}\n\n")
+                if grid.get_quality() > self.best_score:
+                    self.best_score = grid.get_quality()
+                    self.grid = copy.deepcopy(grid)
+                    print(f"new best score: {self.best_score}:\n{self.grid}\n\n")
+                    
 
                 # print(self.tracks)
                 # print("\n")
 
-                self.visit_all_possibilities(self.stations[connection], new_track, new_grid)
+                self.visit_all_possibilities(self.stations[connection], track, grid)
+
+                track.remove_last_station()
         
 
 

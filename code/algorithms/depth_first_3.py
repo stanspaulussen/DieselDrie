@@ -1,74 +1,75 @@
 from code.algorithms.depth_first import Depth_first
-from code.algorithms.depth_first_2 import Depth_first_2
-
 
 import copy
 from code.classes.track import Track
 from code.classes.grid import Grid 
 
-class Depth_first_3(Depth_first_2):
+class Depth_first_3(Depth_first):
 
     def run(self):
 
-        # run as long as there are stations in the stack
+        # run as many times as there are tracks to be made 
         for i in range(self.track_amount):
             
             print(f"started track {i}\n")
-
-            station_list = self.create_station_list()
             
+            # create a copy of the grid 
             new_grid = copy.deepcopy(self.grid)
 
-            track = self.create_new_track(station_list, i, new_grid)
+            # initialize a new track with first station already added
+            track = self.create_new_track(i, new_grid)
 
-            # visit all possibilities 
-            self.visit_all_possibilities(self.first_station, track, new_grid)
+            if track:
+                # visit all possibilities 
+                self.visit_all_possibilities(self.first_station, track, new_grid)
+                self.update_station_dict()
 
-            self.update_station_dict(self.grid)
+            #stop adding tracks if all connections are used 
+            else:
+                break
+
+            
     
-    def create_new_track(self, station_list, i, new_grid):
-        print(f"dit is de station list: {station_list}")
-        print(f"dit is de ongesorteerde lijst: {self.station_dict}")
+    def create_new_track(self, i, new_grid):
+        """
+        Create a new track and pick a station with the fewest available connections to be the starting point of the track.
+        Stop making new tracks if no more connections are available 
+        """
+        for key in self.station_dict:
+            # skip a station if it has less or more than 1 open connection 
+            if self.station_dict[key] != 1:
+                continue 
+            # create a new track and add the station with fewest available connections as starting station 
+            else:
+                self.first_station = self.stations[key]
+                track = Track(f"depthfirst_{i}", new_grid)
+                track.add_station(new_grid, self.first_station.name)
+                return track   
+        return False 
+        
 
-        while self.station_dict[station_list[0]] <= 0:
-            print("eerste station heeft 0 of 2 open verbindingen")
-            self.stations[station_list.pop(0)]            
     
-        print("eerste station heeft goed aantal verbindingen")
-        self.first_station = self.stations[station_list.pop(0)]
-        print(f"dit is het eerste station: {self.first_station}")
-        track = Track(f"depthfirst_{i}", new_grid)
-        track.add_station(new_grid, self.first_station.name)
+    def update_station_dict(self):
+        """
+        Updates the dictionary which stores all available connections of the stations after a track is made. 
+        """
 
+        # define the last added track to the grid 
+        last_track = list(self.grid.tracks.values())[-1]
 
-        return track
-    
-    def update_station_dict(self, final_grid):
-
-        last_track = list(final_grid.tracks.values())[-1]
-
-        print(f"Laatste track: {last_track}")
+        # define the amount of stations in the track 
         track_length = len(last_track.stations)
 
         for station in last_track.stations:
-            if station == 0:
-                print(f"eerste station is: {last_track.stations[station]}")
+            # substract 1 connection from dict if the station is either the first or last station of the track
+            if station == 0 or station == track_length - 1:
                 value = self.station_dict[last_track.stations[station].station_id]
-                new_value = value - 1
-                self.station_dict[last_track.stations[station].station_id] = new_value
-
-            elif station == track_length - 1:
-                print(f"laatste  station is: {last_track.stations[station]}")
-                value = self.station_dict[last_track.stations[station].station_id]
-                new_value = value - 1
-                self.station_dict[last_track.stations[station].station_id] = new_value
+                self.station_dict[last_track.stations[station].station_id] = value - 1
+            # substract two connections from dict if station is in the middle of the track
             else:
-                print(f"dit is het station: {last_track.stations[station]}")
                 value = self.station_dict[last_track.stations[station].station_id]
-                new_value = value - 2
-                self.station_dict[last_track.stations[station].station_id] = new_value
+                self.station_dict[last_track.stations[station].station_id] = value - 2 
         
-        print(f"FINAL DICT: {self.station_dict}")
 
         
 
