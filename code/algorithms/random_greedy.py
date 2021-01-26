@@ -1,3 +1,13 @@
+"""
+random_greedy.py
+Minor Programming: Programming Theory
+By: Pauline van Lieshout, Jari Hoffman and Stans Paulussen
+
+This file contains the random greedy algorithm, which chooses a random starting 
+connection for each track and keeps adding the next best connection (greedy) to 
+the track untill the time limit is reached.
+"""
+
 import copy
 import random
 from code.classes.track import Track
@@ -5,6 +15,10 @@ from code.algorithms.greedy import Greedy
 
 
 class Random_greedy(Greedy):
+    """
+    Chooses random starting connection for each track and continues to add connections to the track based on the greedy algorithm.
+    """
+
     def __init__(self, grid, data, track_amount, loop_amount):
         Greedy.__init__(self, grid, data, track_amount)
 
@@ -14,6 +28,10 @@ class Random_greedy(Greedy):
         self.base_grid = copy.deepcopy(grid)
     
     def pick_first_connection(self):
+        """
+        Picks the first connection of the track randomly.
+        """
+
         stations = list(self.grid.stations.values())
 
         # # choose random first station
@@ -34,6 +52,10 @@ class Random_greedy(Greedy):
         return None
     
     def run(self):
+        """
+        Runs the algorithm x amount of times, generating the score of the solution each time. 
+        """
+
         for j in range(self.loop_amount):
             if j % 500 == 0:
                 print(f"loop {j}")

@@ -1,6 +1,6 @@
 """
 visualise.py
-Minor Programming: Theory
+Minor Programming: Programming Theory
 By: Pauline van Lieshout, Jari Hoffman and Stans Paulussen
 
 This file allows for visualisation of the traintracks.

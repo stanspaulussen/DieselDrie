@@ -1,8 +1,21 @@
+"""
+greedy.py
+Minor Programming: Programming Theory
+By: Pauline van Lieshout, Jari Hoffman and Stans Paulussen
+
+This file contains the Greedy without lookahead algorithm, which picks the best first 
+connection of a track and only adds the connection that leads to the best score.
+"""
+
+
 import copy 
 from code.classes.track import Track
 
 
 class Greedy():
+    """
+    For each track, chooses the best connection and keeps adding connections that lead to the best score.
+    """
 
     def __init__(self, grid, data, track_amount):
         self.grid = copy.deepcopy(grid)
@@ -106,7 +119,5 @@ class Greedy():
                     # add connection to the track with greatest quality 
                     self.pick_next_station(station)
             
-            
-
         print(self.grid)
         return self.grid 

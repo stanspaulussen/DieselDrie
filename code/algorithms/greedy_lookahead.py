@@ -1,11 +1,27 @@
+"""
+greedy_lookahead.py
+Minor Programming: Programming Theory
+By: Pauline van Lieshout, Jari Hoffman and Stans Paulussen
+
+This file contains the Greedy with lookahead algorithm, which searches for the best
+three connections from which the first connection is eventually added to the track.
+"""
+
 import copy 
 from code.classes.track import Track
 from code.algorithms.greedy import Greedy
 
 
 class Greedy_Lookahead(Greedy):
+    """
+    For each track, choosing the first connection of the best three connections found and adding it to the track. 
+    """
 
     def pick_first_connection(self):
+        """
+        Picks the first connection based on the best three connections possible.
+        """
+
         self.best_connection = []
         stations = list(self.grid.stations.values())
 
@@ -30,7 +46,6 @@ class Greedy_Lookahead(Greedy):
                     if self.track.add_station(self.grid, la2[0].name) is False:
                         break
                     
-                #self.check_best_score(self.track, station, next_station)
                     quality = self.grid.get_quality()
                     self.track.remove_last_station()
  
@@ -53,6 +68,9 @@ class Greedy_Lookahead(Greedy):
 
 
     def pick_next_station(self, station):
+        """
+        Picks the next station based on the three connections that produce the best score. 
+        """
 
         self.best_score = 0
 
@@ -63,12 +81,13 @@ class Greedy_Lookahead(Greedy):
         for la1 in lookahead_1.values():
             next_station = la1[0].name
             
-            # if adding the connection exceeds the track's max time length 
+            # if adding the connection exceeds the tracks max time length 
             if self.track.add_station(self.grid, next_station) is False:
                 break
 
             lookahead_2 = self.grid.get_station(la1[0].name).connections
 
+            # keeps adding stations untill the time limit is reached
             for la2 in lookahead_2:
                 la2 = stations.get(la2)
                 if self.track.add_station(self.grid, la2.name) is False:
