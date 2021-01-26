@@ -1,4 +1,4 @@
-# Rail
+# RailNL
 
 ## Case: RailNL
 
@@ -10,19 +10,19 @@ In the case RailNL the goal is to come up with the most efficiënt way to create
 
 To try to find the best solution for this case, we implemented a number of algorithms. 
 
-**Randomise** Randomise generates completely random tracks. The number of tracks can be controlled by the user. The tracks run for the maximum amount of time and no quality is calculated untill the train system is formed 
+* **Randomise** Randomise generates completely random tracks. The number of tracks can be controlled by the user. The tracks run for the maximum amount of time and no quality is calculated untill the train system is formed 
 
-**Greedy without lookahead** For each track, greedy without lookahead picks the best first connection (based on quality formula) to start with and adds the next connection that leads to the best quality. The algorithm stops when adding a track does not lead to a higher score anymore. 
+* **Greedy without lookahead** For each track, greedy without lookahead picks the best first connection (based on quality formula) to start with and adds the next connection that leads to the best quality. The algorithm stops when adding a track does not lead to a higher score anymore. 
 
-**Greedy with lookahead** For each track, greedy with lookahead picks the best starting station not by choosing just one best connection, but by calculating the best three connections and choosing the first one as the starting station. Following, the next connections are picked in the same way, by calculating the best three following connections and picking the first one as the next station. 
+* **Greedy with lookahead** For each track, greedy with lookahead picks the best starting station not by choosing just one best connection, but by calculating the best three connections and choosing the first one as the starting station. Following, the next connections are picked in the same way, by calculating the best three following connections and picking the first one as the next station. 
 
-**Random Greedy** Random greedy differs from greedy without lookahead only in choosing the starting station. The starting station is not based on the best calculated connection, but is chosen randomly. After choosing this first station, random greedy behaves in the same manner as greedy without lookahead in picking the next connection. 
+* **Random Greedy** Random greedy differs from greedy without lookahead only in choosing the starting station. The starting station is not based on the best calculated connection, but is chosen randomly. After choosing this first station, random greedy behaves in the same manner as greedy without lookahead in picking the next connection. 
 
-**Depth First** This algorithm searches the state space in a depth first manner, calculating all possible tracks. We added heuristics in choosing the starting station. Stations with the lowest amount of connections are chosen first as starting stations. This way overlap within tracks is minimized, as dead ends are always starting stations. From this starting station, the quality of all possible tracks is calculated and only the track with the highest score is added to the train system. This process continues untill adding another track does not lead to a higher score anymore. 
+* **Depth First** This algorithm searches the state space in a depth first manner, calculating all possible tracks. We added heuristics in choosing the starting station. Stations with the lowest amount of connections are chosen first as starting stations. This way overlap within tracks is minimized, as dead ends are always starting stations. From this starting station, the quality of all possible tracks is calculated and only the track with the highest score is added to the train system. This process continues untill adding another track does not lead to a higher score anymore. 
 
-**Depth First 2** This algorithm is identical to depth first, except the speed of this algorithm is increased by using less deepcopyies.
+* **Depth First 2** This algorithm is identical to depth first, except the speed of this algorithm is increased by using less deepcopyies.
 
-**Depth First 3** In this algorithm, the choice of which station to start at is perfected. Instead of choosing the station with the least amount of connections, this algorithm chooses the station with the least amount of unridden connections. It keeps up how many connections were ridden, and bases its choice on that instead of the total amount of connections. 
+* **Depth First 3** In this algorithm, the choice of which station to start at is perfected. Instead of choosing the station with the least amount of connections, this algorithm chooses the station with the least amount of unridden connections. It keeps up how many connections were ridden, and bases its choice on that instead of the total amount of connections. 
 
 ## Use
 
