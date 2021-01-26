@@ -1,22 +1,9 @@
 # DieselDrie
 
-## Classes
+## Case: RailNL
 
-* Grid
-  * All stations
-* Station
-  * Links to other stations
-* Tracks/Trains
-  * Stations of a track
+In the case RailNL the goal is to come up with the most efficiënt way to create train lines through the Netherlands. The efficiency of the train lines is determined by the fraction of ridden connections (p), the number of tracks needed (T) and total minutes traveled by all tracks combined (Min). For Holland, the maximum number of tracks is 7, and each track can cover 2 hours worth of connections. For the Netherlands, ![K = p * 10.000 - (T * 100 + Min)](https://github.com/stanspaulussen/DieselDrie/docs/formula.png)
 
-## Functions
-
-* Input file to classes
-* Making tracks
-* Calculating score
-* Generating output file
-
-## Visualisation
-
-* Visualising stations, connections between stations and tracks.
-* Visualised in a graph based on station coordinates.
+De case waar de studenten mee bezig geweest zijn is duidelijk geïntroduceerd in de README.
+De aanpak van de verschillende algoritmen is duidelijk beschreven in de README.
+Het is na lezen van de README duidelijk hoe de resultaten te reproduceren zijn, via een interface (command line), argumenten die meegegeven kunnen worden voor de verschillende functionaliteiten/algoritmen, of bijvoorbeeld een duidelijke uitleg welke file te runnen om welk resultaat te krijgen.
