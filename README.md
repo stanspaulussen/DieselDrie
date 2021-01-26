@@ -32,7 +32,7 @@ By running:
 python3 main.py
 ```
 
-you can choose how which map you want to use (Holland or the Netherlands), how many tracks you would like to make, which algorithm you want to use and if relevant, how many times the algorithm should run. 
+users can choose which map they want to use (Holland or the Netherlands), how many tracks they would like to make, which algorithm they want to use and if relevant, how many times the algorithm should run. 
 
 
 ## Requirements
