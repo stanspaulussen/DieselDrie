@@ -29,6 +29,7 @@ def graph(grid):
         # gets coordinates of the first station of a connection (station A)
         x_A = float(station.y_coord)
         y_A = float(station.x_coord)
+        plt.text(x_A, y_A, f" {station.name}", fontsize=8)
 
         connections = station.connections 
 
@@ -41,10 +42,7 @@ def graph(grid):
             y_B = float(destination.x_coord)
 
             # plots the stations and their connections in graph
-            plt.scatter([x_A, x_B], [y_A, y_B])
-            plt.plot([x_A, x_B], [y_A, y_B], '.-k')
-            plt.text(x_A, y_A, station.name)
-            plt.text(x_B, y_B, destination.name)
+            plt.plot([x_A, x_B], [y_A, y_B], '.-k', linewidth=0.5)
 
     # adds styling to track plot 
     colors = ['.:k', '.-r', '.:g', '.-b', '.:y', '.-m', '.:c']
