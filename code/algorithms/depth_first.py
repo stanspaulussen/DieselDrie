@@ -30,8 +30,6 @@ class Depth_first:
             self.visit_all_possibilities(self.first_station, track, new_grid)
 
             
-
-        
     def create_new_track(self, station_list, i, new_grid):
         self.first_station = self.stations[station_list.pop(0)]
         track = Track(f"depthfirst_{i}", new_grid)
