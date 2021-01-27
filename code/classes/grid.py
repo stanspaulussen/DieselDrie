@@ -128,21 +128,20 @@ class Grid():
             time += track.length
 
         # fraction used connections
-        connection_list = list(self.connections.values())
         connected = 0
-        allready_visited = []
+        visited_set = set()
         
         # iterate over each track
         for track in self.tracks.values():
             # iterate over each connection
-            for connection in connection_list:
-                # check if connection is used in track
-                if track.get_connection(connection) and connection not in allready_visited:
+            for connection in track.connections.values():
+                con1 = f"{connection[0]}, {connection[1]}"
+                con2 = f"{connection[1]}, {connection[0]}"
+                if con1 not in visited_set:
+                    visited_set.add(con1)
+                    visited_set.add(con2)
                     connected += 1
 
-                    # add track to allready_visited to not check again
-                    allready_visited.append(connection)
-        
         # calculate fraction
         p = connected/len(self.connections)
 

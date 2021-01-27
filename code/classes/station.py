@@ -30,4 +30,4 @@ class Station():
         return list(self.connections.values())
 
     def __repr__(self):
-        return f"{self.name}: {self.connections.keys()}"
+        return f"{self.name}"
