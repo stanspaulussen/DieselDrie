@@ -27,8 +27,6 @@ class Depth_first_3(Depth_first):
             #stop adding tracks if all connections are used 
             else:
                 break
-
-            
     
     def create_new_track(self, i, new_grid):
         """
@@ -52,7 +50,6 @@ class Depth_first_3(Depth_first):
                 track = Track(f"depthfirst_{i}", new_grid)
                 track.add_station(new_grid, self.first_station.name)
                 return track
-
     
     def update_station_dict(self):
         """
@@ -73,7 +70,7 @@ class Depth_first_3(Depth_first):
             # substract two connections from dict if station is in the middle of the track
             else:
                 value = self.station_dict[last_track.stations[station].station_id]
-                self.station_dict[last_track.stations[station].station_id] = value - 2 
+                self.station_dict[last_track.stations[station].station_id] = value - 2
         
 
         
