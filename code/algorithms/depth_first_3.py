@@ -33,21 +33,25 @@ class Depth_first_3(Depth_first):
     def create_new_track(self, i, new_grid):
         """
         Create a new track and pick a station with the fewest available connections to be the starting point of the track.
-        Stop making new tracks if no more connections are available 
+        Stops making new tracks if no more connections are available.
         """
+        if 1 in self.station_dict.values():
+            num = 1
+        elif 3 in self.station_dict.values():
+            num = 3
+        elif 2 in self.station_dict.values():
+            num = 2
+        elif 4 in self.station_dict.values():
+            num = 4
+        else:
+            return False
+
         for key in self.station_dict:
-            # skip a station if it has less or more than 1 open connection 
-            if self.station_dict[key] != 1:
-                continue 
-            # create a new track and add the station with fewest available connections as starting station 
-            else:
+            if self.station_dict[key] == num:
                 self.first_station = self.stations[key]
                 track = Track(f"depthfirst_{i}", new_grid)
                 track.add_station(new_grid, self.first_station.name)
-                return track   
-        return False 
-        
-
+                return track
     
     def update_station_dict(self):
         """
@@ -68,7 +72,7 @@ class Depth_first_3(Depth_first):
             # substract two connections from dict if station is in the middle of the track
             else:
                 value = self.station_dict[last_track.stations[station].station_id]
-                self.station_dict[last_track.stations[station].station_id] = value - 2 
+                self.station_dict[last_track.stations[station].station_id] = value - 2
         
 
         

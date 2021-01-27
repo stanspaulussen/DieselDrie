@@ -114,20 +114,14 @@ class Grid():
         # add a track to the track dictionary
         self.tracks[track.track_name] = track
     
-    def get_quality(self):
-        """
-        calculate the quality of the current grid
-        """
-        
-        # amount of tracks
-        t = len(self.tracks)
-
-        # total time
+    def get_time(self):
         time = 0
         for track in list(self.tracks.values()):
             time += track.length
 
-        # fraction used connections
+        return time
+
+    def get_connected(self):
         connected = 0
         visited_set = set()
         
@@ -137,10 +131,25 @@ class Grid():
             for connection in track.connections.values():
                 con1 = f"{connection[0]}, {connection[1]}"
                 con2 = f"{connection[1]}, {connection[0]}"
-                if con1 not in visited_set:
+                if con1 not in visited_set and con2 not in visited_set:
                     visited_set.add(con1)
-                    visited_set.add(con2)
+                    # visited_set.add(con2)
                     connected += 1
+
+        return connected
+    
+    
+    def get_quality(self):
+        """
+        calculate the quality of the current grid
+        """
+        
+        # amount of tracks
+        t = len(self.tracks)
+
+        time = self.get_time()
+
+        connected = self.get_connected()
 
         # calculate fraction
         p = connected/len(self.connections)
