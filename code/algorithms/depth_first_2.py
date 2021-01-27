@@ -11,7 +11,7 @@ from code.algorithms.depth_first import Depth_first
 import copy
 from code.classes.track import Track
 
-class Depth_first_3(Depth_first):
+class Depth_first_2(Depth_first):
     """
     Improves on depth first by picking the first station with the least amount of unridden connections.
     """
@@ -22,7 +22,7 @@ class Depth_first_3(Depth_first):
         # run as many times as there are tracks to be made 
         for i in range(self.track_amount):
             print(f"started track {i}\n")
-            
+
             # create a copy of the grid 
             new_grid = copy.deepcopy(self.grid)
 
@@ -81,12 +81,3 @@ class Depth_first_3(Depth_first):
             else:
                 value = self.station_dict[last_track.stations[station].station_id]
                 self.station_dict[last_track.stations[station].station_id] = value - 2
-        
-
-        
-
-
-        
-    
-
-        

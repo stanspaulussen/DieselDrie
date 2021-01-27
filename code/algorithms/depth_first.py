@@ -89,13 +89,3 @@ class Depth_first:
                 self.visit_all_possibilities(self.stations[connection], track, grid)
                 track.remove_last_station()
         
-
-
-
-                
-            
-
-            
-
-            
-

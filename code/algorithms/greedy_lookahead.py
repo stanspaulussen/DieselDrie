@@ -88,14 +88,9 @@ class Greedy_Lookahead(Greedy):
                 
                 self.track.remove_last_station()
 
-                # if quality improves, add station to the track
+                # if quality improves, add first station to the track
                 if quality > self.best_score:
                     self.best_score = quality 
                     self.best_connection = [la2.name, la1[0].name]
                     
             self.track.remove_last_station()
-
-
-
-
-

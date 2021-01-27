@@ -70,3 +70,8 @@ The list down below explains all folders and their content:
 * Stans Paulussen
 * Jari Hoffmann
 * Pauline van Lieshout
+
+
+## Acknoledgements 
+* Quinten van der Post & Kiara Evers for guidance during this project
+* Radio Russia example algorithms at: https://github.com/minprog/radio_russia_demo/tree/college_1

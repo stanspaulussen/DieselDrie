@@ -79,4 +79,3 @@ class Random():
             if score > self.best_score:
                 self.best_score = score
                 self.best_grid = copy.deepcopy(grid)
-

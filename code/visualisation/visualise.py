@@ -63,6 +63,3 @@ def graph(grid):
                 plt.plot([x_A, x_B], [y_A, y_B], color, alpha=0.7, linewidth=line_width)
             
     plt.show()
-
-            
-            

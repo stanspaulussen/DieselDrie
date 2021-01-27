@@ -1,6 +1,6 @@
 from code.classes import grid, station, track
 from code.visualisation import visualise
-from code.algorithms import randomise, greedy, greedy_lookahead, random_greedy, depth_first, depth_first_3, depth_first_random
+from code.algorithms import randomise, greedy, greedy_lookahead, random_greedy, depth_first, depth_first_2, depth_first_random
 import csv
 import time
 
@@ -34,8 +34,8 @@ if __name__ == "__main__":
     print("3: Random Greedy")
     print("4: Greedy with Lookahead")
     print("5: Depth First")
-    print("6: Depth First 3.0")
-    print("7: Depth First 3.0 Random")
+    print("6: Depth First 2.0")
+    print("7: Depth First 2.0 Random")
 
     choice = False
 
@@ -112,12 +112,12 @@ if __name__ == "__main__":
             test_grid = depth_first.grid
         elif num == 6:
             choice = True
-            depth_first_3 = depth_first_3.Depth_first_3(test_grid, data, track_amount)
+            depth_first_2 = depth_first_2.Depth_first_2(test_grid, data, track_amount)
 
             start = time.time()
 
-            depth_first_3.run()
-            test_grid = depth_first_3.grid
+            depth_first_2.run()
+            test_grid = depth_first_2.grid
         elif num == 7:
             choice = True
             depth_first_random = depth_first_random.Depth_first_random(test_grid, data, track_amount)
@@ -135,18 +135,3 @@ if __name__ == "__main__":
     print("This is what the solution looks like:")
     print(test_grid)
     visualise.graph(test_grid)
-
-    # TODO: create output file
-
-    # # # append quality score to csv file 
-    # # with open ('output.csv', 'a') as f: 
-    # #     for track in test_grid.tracks:
-    # #         f.write(f" {str(track)} : {test_grid.tracks[track]}")
-    # #         f.write("\n")
-    # #     f.write(str(quality))
-    # #     f.write("\n")
-    # #     f.write("\n")
-    
-    # #     with open ('output_1line.csv', 'a') as f:
-    # #         f.write("\n")
-    # #         f.write(f"{str(quality)}, {str(test_grid.tracks)}")
