@@ -11,11 +11,12 @@ import csv
 
 class Grid():
     """
-    contains all stations, connections and tracks
+    Contains all stations, connections and tracks.
     """
     def __init__(self, data, load=True):
 
         self.data = data
+        self.tracks = {}
 
         # loads different data depending on which map is chosen
         if load == True:
@@ -31,13 +32,10 @@ class Grid():
         else:
             self.stations = None
             self.connections = None
-        
-        self.tracks = {}
 
     def copy(self):
-        ## TODO
         """
-        Dit moet Jari doen
+        Copies grid.
         """
 
         new = Grid(None, load=False)
@@ -49,7 +47,7 @@ class Grid():
 
     def load_stations(self, sourcefile):
         """
-        load all stations from the input file
+        Load all stations from the input file.
         """
         # create empty dict for stations
         stations = {}
@@ -66,7 +64,7 @@ class Grid():
 
     def get_station(self, station_name):
         """
-        search for a station object and return it
+        Search for a station object and return it.
         """
         # get all stations in list
         stations = self.stations.values()
@@ -78,7 +76,7 @@ class Grid():
 
     def load_connections(self, sourcefile):
         """
-        load all connections between stations from the sourcefile
+        Load all connections between stations from the sourcefile.
         """
         # create empty dict for connections
         connections = {}
@@ -109,12 +107,15 @@ class Grid():
     
     def add_track(self, track):
         """
-        add a new track to the grid
+        Add a new track to the grid.
         """
         # add a track to the track dictionary
         self.tracks[track.track_name] = track
     
     def get_time(self):
+        """
+        Times the algorithm.
+        """
         time = 0
         for track in list(self.tracks.values()):
             time += track.length
@@ -122,6 +123,9 @@ class Grid():
         return time
 
     def get_connected(self):
+        """
+        Keeps track of visited connections.
+        """
         connected = 0
         visited_set = set()
         
@@ -131,28 +135,25 @@ class Grid():
             for connection in track.connections.values():
                 con1 = f"{connection[0]}, {connection[1]}"
                 con2 = f"{connection[1]}, {connection[0]}"
+                # adds one if an unridden connection is now ridden
                 if con1 not in visited_set and con2 not in visited_set:
                     visited_set.add(con1)
-                    # visited_set.add(con2)
                     connected += 1
 
         return connected
     
-    
     def get_quality(self):
         """
-        calculate the quality of the current grid
+        Calculate the quality of the current grid.
         """
-        
         # amount of tracks
         t = len(self.tracks)
 
+        # amount of minutes travelled in all tracks combined.
         time = self.get_time()
 
-        connected = self.get_connected()
-
-        # calculate fraction
-        p = connected/len(self.connections)
+        # calculate fraction ridden connections
+        p = self.get_connected()/len(self.connections)
 
         # calculate quality
         k = p * 10000 - (t * 100 + time)

@@ -13,12 +13,10 @@ import random
 from code.classes.track import Track
 from code.algorithms.greedy import Greedy
 
-
 class Random_greedy(Greedy):
     """
     Chooses random starting connection for each track and continues to add connections to the track based on the greedy algorithm.
     """
-
     def __init__(self, grid, data, track_amount, loop_amount):
         Greedy.__init__(self, grid, data, track_amount)
 
@@ -31,22 +29,21 @@ class Random_greedy(Greedy):
         """
         Picks the first connection of the track randomly.
         """
-
         stations = list(self.grid.stations.values())
 
-        # # choose random first station
+        # choose random first station
         first_station = random.choice(stations)
         first_station_name = first_station.name
 
+        # creates track and adds the first station to it
         self.track = Track(f"greedy_track_{self.count}", self.grid)
         self.track.add_station(self.grid, first_station_name)
 
+        # picks a random first connection to start wiht
         connections = list(first_station.connections.values())
-
         next_station = random.choice(connections)
 
         self.best_connection = [None, next_station[0].name]
-
         self.count += 1
 
         return None
@@ -55,8 +52,9 @@ class Random_greedy(Greedy):
         """
         Runs the algorithm x amount of times, generating the score of the solution each time. 
         """
-
+        # runs the algorithm as many times as user would like
         for j in range(self.loop_amount):
+            # visualises how many loops the algorithm has run
             if j % 500 == 0:
                 print(f"loop {j}")
             
@@ -64,10 +62,10 @@ class Random_greedy(Greedy):
             self.best_score = 0
             self.count = 0
 
+            # creates number of tracks the user entered
             for i in range(self.track_amount):
-
                 station = None
-                
+
                 # choose first connection
                 self.pick_first_connection()
 
@@ -76,6 +74,7 @@ class Random_greedy(Greedy):
                     # add connection to the track with greatest quality 
                     self.pick_next_station(station)
             
+            # only remembers the loop with the grid with the highest score
             quality = self.grid.get_quality()
             if quality > self.best_grid_score:
                 self.best_grid_score = quality

@@ -8,7 +8,7 @@ This file contains the database of each station.
 
 class Station():
     """
-    contains a station with coordinates and connections
+    Contains a station with coordinates and connections.
     """
     def __init__(self, name, station_id, x_coord, y_coord):
         self.name = name
@@ -19,13 +19,13 @@ class Station():
 
     def add_connection(self, station, length):
         """
-        add a connection to the station
+        Add a connection to the station.
         """
         self.connections[station.station_id] = [station, length]
 
     def get_connections(self):
         """
-        return a list of all connected station objects
+        Return a list of all connected station objects.
         """
         return list(self.connections.values())
 

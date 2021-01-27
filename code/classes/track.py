@@ -11,7 +11,7 @@ from .station import Station
 
 class Track():
     """
-    defines a track containing stations and conections and a total length
+    Defines a track containing stations and conections and a total length.
     """
     def __init__(self, track_name, grid):
         self.track_name = track_name
@@ -22,6 +22,7 @@ class Track():
         # adds itself to the grid
         grid.add_track(self)
 
+        # defines max length of a track based on which map is used (Holland/the Netherlands)
         if grid.data == 1:
             self.max_length = 121
         else:
@@ -29,8 +30,8 @@ class Track():
 
     def add_station(self, grid, station_name):
         """
-        add a new station to the track
-        it must be connected to the previous stations
+        Add a new station to the track.
+        It must be connected to the previous stations.
         """
         # get the station object
         station = grid.get_station(station_name)
@@ -38,7 +39,6 @@ class Track():
         # check if the stations dictionary is empty
         if self.stations == {}:
             self.stations[0] = station
-            
             return True
         else:
             # get last station object
@@ -54,7 +54,7 @@ class Track():
                 if str(station) == str(connection[0]) and self.length + int(connection[1]) < self.max_length:
                     # add station to track
                     self.stations[len(self.stations)] = station
-
+                
                     # add connection length to total length
                     self.length = self.length + int(connection[1])
 
@@ -62,19 +62,18 @@ class Track():
                     self.connections[len(self.stations) - 2] = [last_station, station]
 
                     return True
-
             # no connection found
             return False
  
     def get_stations(self):
         """
-        return all stations of this track
+        Return all stations of this track.
         """
         return self.stations.values()
 
     def get_connection(self, connection):
         """
-        check if this track contains a certain connection
+        Check if this track contains a certain connection.
         """
         # check for one way
         if connection in self.connections.values():
@@ -86,7 +85,7 @@ class Track():
     
     def remove_last_station(self):
         """
-        remove the last station that was added to this track
+        Remove the last station that was added to this track.
         """
         # remove station
         removed_station = self.stations.popitem()

@@ -7,16 +7,13 @@ This file contains the Greedy without lookahead algorithm, which picks the best 
 connection of a track and only adds the connection that leads to the best score.
 """
 
-
 import copy 
 from code.classes.track import Track
-
 
 class Greedy():
     """
     For each track, chooses the best connection and keeps adding connections that lead to the best score.
     """
-
     def __init__(self, grid, data, track_amount):
         self.grid = copy.deepcopy(grid)
         self.data = data
@@ -28,9 +25,8 @@ class Greedy():
     
     def check_best_score(self, track, station, next_station):
         """
-        Checks if connection generates new best quality score 
+        Checks if connection generates new best quality score.
         """
-        
         # calculate quality of grid with this connection 
         quality = self.grid.get_quality()
 
@@ -41,12 +37,10 @@ class Greedy():
             self.best_score = quality 
             self.best_connection = [station, next_station]
 
-    
     def pick_first_connection(self):
         """
-        Chooses first conenction of track with greatest quality 
+        Chooses first conenction of track with greatest quality.
         """
-
         stations = list(self.grid.stations.values())
         self.best_connection = []
 
@@ -66,32 +60,27 @@ class Greedy():
 
                 self.check_best_score(self.track, station, next_station)
 
-        # add best connection to the track
-
-        try:
-            self.track = Track(f"greedy_track_{self.count}", self.grid)
-            self.track.add_station(self.grid, self.best_connection[0].name)
-
-            self.count += 1
-            return self.best_connection[0].name
-
-        except IndexError:
+        # if adding another track does not lead to a better quality, stop algorithm
+        if self.best_connection == []:
             return False
 
+        # add best connection to the track
+        self.track = Track(f"greedy_track_{self.count}", self.grid)
+        self.track.add_station(self.grid, self.best_connection[0].name)
+        self.count += 1
 
-    
+        return self.best_connection[0].name
+
     def pick_next_station(self, station):
         """
-        Chooses next station in track based on highest quality 
+        Chooses next station in track based on highest quality.
         """
-
         # all connections of the last added added station 
         connections = self.grid.get_station(self.best_connection[1]).connections
 
         for connection in connections.values():
-
             next_station = connection[0].name
-            
+
             # if adding the connection exceeds the track's max time length 
             if self.track.add_station(self.grid, next_station) is False:
                 break
@@ -101,11 +90,9 @@ class Greedy():
 
     def run(self):
         """
-        Generates a grid with a maximum of seven tracks composed of the most profitable connections
+        Generates a grid with a maximum of seven tracks composed of the most profitable connections.
         """
-
         for i in range(self.track_amount):
-            
             # choose first connection 
             station = self.pick_first_connection()
 

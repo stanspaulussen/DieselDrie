@@ -1,16 +1,26 @@
-from code.algorithms.depth_first import Depth_first
+"""
+depth_first_3.py
+Minor Programming: Programming Theory
+By: Pauline van Lieshout, Jari Hoffmann and Stans Paulussen
 
+This file contains the improved depth first algorithm. It chooses the starting station by 
+picking the first station of a track with the least amount of unridden connections.
+"""
+
+from code.algorithms.depth_first import Depth_first
 import copy
 from code.classes.track import Track
-from code.classes.grid import Grid 
 
 class Depth_first_3(Depth_first):
-
+    """
+    Improves on depth first by picking the first station with the least amount of unridden connections.
+    """
     def run(self):
-
+        """
+        Runs the depth first algorithm.
+        """
         # run as many times as there are tracks to be made 
         for i in range(self.track_amount):
-            
             print(f"started track {i}\n")
             
             # create a copy of the grid 
@@ -23,7 +33,6 @@ class Depth_first_3(Depth_first):
                 # visit all possibilities 
                 self.visit_all_possibilities(self.first_station, track, new_grid)
                 self.update_station_dict()
-
             #stop adding tracks if all connections are used 
             else:
                 break
@@ -33,6 +42,7 @@ class Depth_first_3(Depth_first):
         Create a new track and pick a station with the fewest available connections to be the starting point of the track.
         Stops making new tracks if no more connections are available.
         """
+        # prefers stations with 1 unridden connection, then 3, then 2, then 4
         if 1 in self.station_dict.values():
             num = 1
         elif 3 in self.station_dict.values():
@@ -44,6 +54,7 @@ class Depth_first_3(Depth_first):
         else:
             return False
 
+        # retrieves a station with the correct amount of connections and adds it to the track
         for key in self.station_dict:
             if self.station_dict[key] == num:
                 self.first_station = self.stations[key]
@@ -55,7 +66,6 @@ class Depth_first_3(Depth_first):
         """
         Updates the dictionary which stores all available connections of the stations after a track is made. 
         """
-
         # define the last added track to the grid 
         last_track = list(self.grid.tracks.values())[-1]
 
