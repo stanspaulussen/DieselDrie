@@ -27,8 +27,6 @@ class Depth_first_3(Depth_first):
             #stop adding tracks if all connections are used 
             else:
                 break
-
-            
     
     def create_new_track(self, i, new_grid):
         """
