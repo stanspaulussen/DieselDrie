@@ -3,7 +3,7 @@ grid.py
 Minor Programming: Programming Theory
 By: Pauline van Lieshout, Jari Hoffman and Stans Paulussen
 
-This file contains the database for the combined tracks that form a train system.
+This file loads the data and contains the database for the combined tracks that form a train system.
 """
 
 from .station import Station
